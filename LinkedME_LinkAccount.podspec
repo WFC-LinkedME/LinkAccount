@@ -14,10 +14,11 @@ s.source                = { :git => "https://github.com/WFC-LinkedME/LinkAccount
 s.vendored_frameworks = 'LinkAccountLib-Demo/Lib/LinkAccountLib.framework'
 s.resources = 'LinkAccountLib-Demo/Lib/LinkAccount.bundle'
 
+s.libraries = 'c++', 'z.1.2.8'
+
 s.platform              = :ios
 s.ios.deployment_target = '9.0'
 s.requires_arc          = true
 
-s.frameworks = 'libz.1.2.8','Security','libc++'
 
 end
