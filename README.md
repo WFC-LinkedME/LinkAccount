@@ -29,6 +29,29 @@
 ### 开发环境搭建
 LinkAccount SDK目前仅提供手动集成方式。
 
+通过CocoaPods自动集成
+在工程的Podfile里面添加以下代码：
+
+```
+#以下两种版本选择方式示例
+
+#集成最新版SDK:
+pod 'LinkedME_LinkAccount'
+
+#集成指定版本SDK:
+pod 'LinkedME_LinkAccount', '1.0.0'
+
+保存并执行pod install,然后用后缀为.xcworkspace的文件打开工程。
+```
+
+注意:
+
+命令行下执行pod search LinkedME_LinkAccount,如显版本不是最新的，则先执行pod repo update操作更新本地repo的内容
+
+关于CocoaPods的更多信息请查看 [CocoaPods官方网站](https://cocoapods.org/)。
+
+
+
 - 手动集成
 
 1.导入framework和bundle资源文件：将LinkAccount SDK压缩包中framework文件夹下所有资源添加到工程中（注意勾选Copy items if needed）
