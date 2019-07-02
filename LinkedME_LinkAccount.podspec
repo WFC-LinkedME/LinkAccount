@@ -11,8 +11,8 @@ s.license               = 'MIT'
 s.author                = { "Bindx" => "487479@gmail.com"}
 s.source                = { :git => "https://github.com/WFC-LinkedME/LinkAccount.git", :tag => s.version }
 
-s.vendored_frameworks = 'LinkAccountLib-Demo/Lib/LinkAccountLib.framework'
-s.resources = 'LinkAccountLib-Demo/Lib/LinkAccount.bundle'
+s.vendored_frameworks = '**/**/LinkAccountLib.framework'
+s.resources = '**/**/LinkAccount.bundle'
 
 s.libraries = 'c++', 'z.1.2.8'
 
