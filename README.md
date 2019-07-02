@@ -1,4 +1,4 @@
-#LinkAccount iOS对接文档
+# LinkAccount iOS对接文档
 
 当前版本：1.0.0
 
@@ -11,7 +11,7 @@
 ## 一.准备工作
 
 
-###前置条件
+### 前置条件
 
 
 - LinkAccount SDK支持Xcode 9.4.1，iOS8.0+及以上版本。
