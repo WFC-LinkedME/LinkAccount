@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 * 参数：无
 * 返回：字符串，sdk版本号
 */
-- (NSString *_Nonnull)getVersion;
++ (NSString *_Nonnull)getVersion;
 
 /**
  initWithLinkMessageKeyComplete

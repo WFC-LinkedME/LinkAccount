@@ -27,9 +27,9 @@
 应用的创建流程及APPID/APPKEY的获取，请查看[「产品指南」](https://pagedoc.lkme.cc/linkaccount/product-guide)文档
 
 ### 开发环境搭建
-LinkAccount SDK目前仅提供手动集成方式。
+LinkAccount SDK目前仅提供两种集成方式，手动集成，cocoaPods集成。
 
-通过CocoaPods自动集成
+- 通过CocoaPods自动集成
 在工程的Podfile里面添加以下代码：
 
 ```
