@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14810.11" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.13"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,9 +15,81 @@
                     <view key="view" contentMode="scaleToFill" id="pQ2-2s-3aJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bs4-JZ-l8q">
+                                <rect key="frame" x="23" y="58" width="369" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="预取号">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="getphoneNumber:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bqm-St-EE6"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gyT-ES-kV3">
+                                <rect key="frame" x="23" y="229" width="368" height="609"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8iP-Tg-yXb">
+                                <rect key="frame" x="24" y="172" width="368" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="获取本机号码校验(AccessCode)">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fti-v4-ZFM">
+                                <rect key="frame" x="23" y="107" width="368" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="一键登陆">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="showLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EgL-71-5KY"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fti-v4-ZFM" firstAttribute="trailing" secondItem="gyT-ES-kV3" secondAttribute="trailing" id="1NK-0z-fZ7"/>
+                            <constraint firstItem="Bs4-JZ-l8q" firstAttribute="trailing" secondItem="8iP-Tg-yXb" secondAttribute="trailing" id="6Xm-VA-Xce"/>
+                            <constraint firstItem="fti-v4-ZFM" firstAttribute="leading" secondItem="gyT-ES-kV3" secondAttribute="leading" id="6sI-w5-QKe"/>
+                            <constraint firstItem="fti-v4-ZFM" firstAttribute="top" secondItem="Bs4-JZ-l8q" secondAttribute="bottom" constant="19" id="HRH-AA-ELW"/>
+                            <constraint firstItem="8iP-Tg-yXb" firstAttribute="top" secondItem="fti-v4-ZFM" secondAttribute="bottom" constant="35" id="IQL-ul-Mbp"/>
+                            <constraint firstItem="Bs4-JZ-l8q" firstAttribute="centerX" secondItem="fti-v4-ZFM" secondAttribute="centerX" id="IwW-Af-AM6"/>
+                            <constraint firstItem="Bs4-JZ-l8q" firstAttribute="centerX" secondItem="8iP-Tg-yXb" secondAttribute="centerX" id="Qqa-I4-eWz"/>
+                            <constraint firstItem="Bs4-JZ-l8q" firstAttribute="leading" secondItem="Wls-gO-ual" secondAttribute="leading" constant="23" id="Uuv-Er-gsW"/>
+                            <constraint firstItem="Wls-gO-ual" firstAttribute="bottom" secondItem="gyT-ES-kV3" secondAttribute="bottom" constant="24" id="ZYQ-5L-Qxj"/>
+                            <constraint firstItem="gyT-ES-kV3" firstAttribute="top" secondItem="8iP-Tg-yXb" secondAttribute="bottom" constant="27" id="azm-7t-RFp"/>
+                            <constraint firstItem="Bs4-JZ-l8q" firstAttribute="centerX" secondItem="pQ2-2s-3aJ" secondAttribute="centerX" id="dFi-zQ-Evx"/>
+                            <constraint firstItem="Bs4-JZ-l8q" firstAttribute="top" secondItem="Wls-gO-ual" secondAttribute="top" constant="14" id="ffF-EK-Ql1"/>
+                            <constraint firstItem="Bs4-JZ-l8q" firstAttribute="leading" secondItem="fti-v4-ZFM" secondAttribute="leading" id="jgi-rY-DT7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Wls-gO-ual"/>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="gyT-ES-kV3" id="LnY-tB-s77"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -12,7 +12,6 @@
 @interface ViewController()
 
 @property (strong, nonatomic) LMCustomModel *model;
-@property (weak, nonatomic) IBOutlet UITextField *phontNum;
 @property (copy, nonatomic) NSMutableString *logStr;
 
 @end
@@ -25,9 +24,6 @@
     _logStr = [[NSMutableString alloc]init];
     
 }
-
-
-
 
 //预取号,登陆前60s调用此方法
 - (IBAction)getphoneNumber:(id)sender {
