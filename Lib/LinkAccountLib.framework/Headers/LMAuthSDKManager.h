@@ -1,6 +1,6 @@
 //
 //  LMAuthSDKManager.h
-//  CL_ShanYanSDK
+//  LinkAccount
 //
 //  Created by bindx on 2019/6/6.
 //  Copyright © 2019 bindx. All rights reserved.
@@ -50,9 +50,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  获取SDK预初始化完成情况（成功/失败），用户可以在将要调用一键登录方法处，通过此方法获取SDK预初始化情况，对于预初始化失败的，仍可以直接调一键登录接口，由用户自行决定
- @return CLSDKInitStutas
+ @return status
  */
-
 
 /**
  --获取本机号码校验Code
