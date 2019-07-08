@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import <LinkAccountLib/LinkAccount.h>
+#import <LinkAccount_Lib/LinkAccount.h>
 
 @interface AppDelegate ()
 

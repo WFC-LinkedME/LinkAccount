@@ -7,12 +7,13 @@
 //
 
 #import "ViewController.h"
-#import <LinkAccountLib/LinkAccount.h>
+#import <LinkAccount_Lib/LinkAccount.h>
 
 @interface ViewController()
 
 @property (strong, nonatomic) LMCustomModel *model;
 @property (copy, nonatomic) NSMutableString *logStr;
+@property (copy,nonatomic) NSString *token;
 
 @end
 
@@ -74,6 +75,13 @@
         }
     } otherLogin:^{
         [weakSelf addLog:@"用户选择使用其他方式登录"];
+    }];
+}
+    
+- (IBAction)phoneNumValidation:(id)sender {
+    [[LMAuthSDKManager sharedSDKManager]getAccessCodeWithcomplete:^(NSDictionary * _Nonnull resultDic) {
+        self.token = resultDic[@"accessCode"];
+        [self addLog:[self convertToJsonData:resultDic]];
     }];
 }
 
