@@ -107,7 +107,7 @@ pod 'LinkedME_LinkAccount', '1.0.0'
 - 只需调用一次，多次调用不会多次初始化，与一次调用效果一致
 
 **OC**
-1.导入LinkAccount SDK头文件 #import`<LinkAccountLib/LinkAccount.h>`
+1.导入LinkAccount SDK头文件 #import`<LinkAccount_Lib/LinkAccount.h>`
 2.在AppDelegate中的 didFinishLaunchingWithOptions方法中添加初始化代码
 
 ```
@@ -123,7 +123,7 @@ pod 'LinkedME_LinkAccount', '1.0.0'
 
 **Swift**
 创建混编桥接头文件并导入LinkAccount SDK头文件 
-#import `<LinkAccountLib/LinkAccount.h>`
+#import `<LinkAccount_Lib/LinkAccount.h>`
 
 在AppDelegate中的 didFinishLaunchingWithOptions方法中添加初始化代码
 
@@ -180,7 +180,7 @@ OC:
 
 ```
 
-#import <LinkAccountLib/LinkAccount.h>
+#import <LinkAccount_Lib/LinkAccount.h>
 
 //需要拉起授权页的ViewController页面
 
@@ -256,7 +256,7 @@ class ViewController: UIViewController {
 > 请求示例代码
 
 
-导入LinkAccount SDK头文件 #import `<LinkAccountLib/LinkAccount.h>`
+导入LinkAccount SDK头文件 #import `<LinkAccount_Lib/LinkAccount.h>`
 在需要使用一键登录的地方调用一键登录接口
 
 **OC**
