@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84549ADF22E99F6F000C1B38 /* LinkAccount_Lib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84549ADE22E99F6F000C1B38 /* LinkAccount_Lib.framework */; };
 		8477DC2E22CB4FAB0015ABB2 /* LinkAccount.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8477DC2C22CB4FAB0015ABB2 /* LinkAccount.bundle */; };
 		8477DC3822CB61510015ABB2 /* LinkedME_LinkAccount.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8477DC3722CB61510015ABB2 /* LinkedME_LinkAccount.podspec */; };
-		84B3A1C422D304D900FAE636 /* LinkAccount_Lib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B3A1C322D304D900FAE636 /* LinkAccount_Lib.framework */; };
 		84B6249922AF99000032D244 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B6249822AF99000032D244 /* AppDelegate.m */; };
 		84B6249C22AF99000032D244 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B6249B22AF99000032D244 /* ViewController.m */; };
 		84B6249F22AF99000032D244 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84B6249D22AF99000032D244 /* Main.storyboard */; };
@@ -21,9 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84549ADE22E99F6F000C1B38 /* LinkAccount_Lib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LinkAccount_Lib.framework; sourceTree = "<group>"; };
 		8477DC2C22CB4FAB0015ABB2 /* LinkAccount.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LinkAccount.bundle; sourceTree = "<group>"; };
 		8477DC3722CB61510015ABB2 /* LinkedME_LinkAccount.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LinkedME_LinkAccount.podspec; sourceTree = "<group>"; };
-		84B3A1C322D304D900FAE636 /* LinkAccount_Lib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LinkAccount_Lib.framework; sourceTree = "<group>"; };
 		84B6249422AF99000032D244 /* LinkAccountLib-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LinkAccountLib-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B6249722AF99000032D244 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		84B6249822AF99000032D244 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -46,7 +46,7 @@
 			files = (
 				84B624D122AF99FF0032D244 /* libz.1.2.8.tbd in Frameworks */,
 				84B624CF22AF99F90032D244 /* libc++.tbd in Frameworks */,
-				84B3A1C422D304D900FAE636 /* LinkAccount_Lib.framework in Frameworks */,
+				84549ADF22E99F6F000C1B38 /* LinkAccount_Lib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,7 +56,7 @@
 		8477DC2A22CB4FAB0015ABB2 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				84B3A1C322D304D900FAE636 /* LinkAccount_Lib.framework */,
+				84549ADE22E99F6F000C1B38 /* LinkAccount_Lib.framework */,
 				8477DC2C22CB4FAB0015ABB2 /* LinkAccount.bundle */,
 			);
 			path = Lib;
@@ -324,6 +324,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UEVC2E3PR8;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -352,6 +353,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UEVC2E3PR8;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
