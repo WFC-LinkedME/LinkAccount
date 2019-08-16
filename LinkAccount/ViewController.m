@@ -42,10 +42,10 @@
 - (IBAction)showLogin:(id)sender {
     
     __weak typeof(self) weakSelf = self;
-    //自定义Model
+      //自定义Model
     _model = [LMCustomModel new];
     //LOGO
-//    _model.logoImage = [UIImage imageNamed:@"logo"];
+    _model.logoImage = [UIImage imageNamed:@"logo"];
     //是否隐藏其他方式登陆按钮
     _model.changeBtnIsHidden = NO;
     //自定义隐私条款1
@@ -60,6 +60,8 @@
     _model.logBtnImgs = [NSArray arrayWithObjects:[UIImage imageNamed:@"loginBtn_Nor"],[UIImage imageNamed:@"loginBtn_Dis"] ,[UIImage imageNamed:@"loginBtn_Pre"],nil];
     //返回按钮
     _model.navReturnImg = [UIImage imageNamed:@"goback_nor"];
+    //背景图片
+//    _model.authPageBackgroundImage = [UIImage imageNamed:@"xx"];
 
     //一键登陆
     [[LMAuthSDKManager sharedSDKManager] getLoginTokenWithController:self model:_model timeout:888 complete:^(NSDictionary * _Nonnull resultDic) {
@@ -70,14 +72,21 @@
             NSLog(@"登陆成功");
             
             [[LMAuthSDKManager sharedSDKManager] closeAuthView];
+            
         }else{
+            
             NSLog(@"%@",resultDic);
+            
         }
+        
     } otherLogin:^{
+        
         [weakSelf addLog:@"用户选择使用其他方式登录"];
+        
     }];
-}
     
+}
+
 - (IBAction)phoneNumValidation:(id)sender {
     [[LMAuthSDKManager sharedSDKManager]getAccessCodeWithcomplete:^(NSDictionary * _Nonnull resultDic) {
         self.token = resultDic[@"accessCode"];
@@ -106,7 +115,6 @@
     NSRange range2 = {0,mutStr.length};
     //去掉字符串中的换行符
     [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
-    
     return mutStr;
 }
 

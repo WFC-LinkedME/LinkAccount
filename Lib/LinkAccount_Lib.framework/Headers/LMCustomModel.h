@@ -57,6 +57,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIImage *checkedImg;
 // 导航返回图标
 @property (nonatomic,strong) UIImage *navReturnImg;
+// 授权页面背景
+@property (nonatomic,strong) UIImage *authPageBackgroundImage;
 
 @end
 
