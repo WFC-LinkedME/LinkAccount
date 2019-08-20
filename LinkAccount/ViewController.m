@@ -61,8 +61,8 @@
     //返回按钮
     _model.navReturnImg = [UIImage imageNamed:@"goback_nor"];
     //背景图片
-    _model.authPageBackgroundImage = [UIImage imageNamed:@"aa"];
-
+//    _model.authPageBackgroundImage = [UIImage imageNamed:@"background"];
+    
     //一键登陆
     [[LMAuthSDKManager sharedSDKManager] getLoginTokenWithController:self model:_model timeout:888 complete:^(NSDictionary * _Nonnull resultDic) {
         

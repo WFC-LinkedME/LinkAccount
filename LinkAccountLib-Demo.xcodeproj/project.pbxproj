@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		845B4F93230ABD9E00EF8C41 /* LinkAccount_Lib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 845B4F92230ABD9D00EF8C41 /* LinkAccount_Lib.framework */; };
+		845B4F9B230B90A500EF8C41 /* LinkAccount_Lib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 845B4F9A230B90A500EF8C41 /* LinkAccount_Lib.framework */; };
 		8477DC2E22CB4FAB0015ABB2 /* LinkAccount.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8477DC2C22CB4FAB0015ABB2 /* LinkAccount.bundle */; };
 		8477DC3822CB61510015ABB2 /* LinkedME_LinkAccount.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8477DC3722CB61510015ABB2 /* LinkedME_LinkAccount.podspec */; };
 		84B6249922AF99000032D244 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B6249822AF99000032D244 /* AppDelegate.m */; };
@@ -21,7 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		845B4F92230ABD9D00EF8C41 /* LinkAccount_Lib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LinkAccount_Lib.framework; sourceTree = "<group>"; };
+		845B4F9A230B90A500EF8C41 /* LinkAccount_Lib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LinkAccount_Lib.framework; sourceTree = "<group>"; };
 		8477DC2C22CB4FAB0015ABB2 /* LinkAccount.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LinkAccount.bundle; sourceTree = "<group>"; };
 		8477DC3722CB61510015ABB2 /* LinkedME_LinkAccount.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LinkedME_LinkAccount.podspec; sourceTree = "<group>"; };
 		84B6249422AF99000032D244 /* LinkAccountLib-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LinkAccountLib-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,7 +46,7 @@
 			files = (
 				84B624D122AF99FF0032D244 /* libz.1.2.8.tbd in Frameworks */,
 				84B624CF22AF99F90032D244 /* libc++.tbd in Frameworks */,
-				845B4F93230ABD9E00EF8C41 /* LinkAccount_Lib.framework in Frameworks */,
+				845B4F9B230B90A500EF8C41 /* LinkAccount_Lib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,7 +56,7 @@
 		8477DC2A22CB4FAB0015ABB2 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				845B4F92230ABD9D00EF8C41 /* LinkAccount_Lib.framework */,
+				845B4F9A230B90A500EF8C41 /* LinkAccount_Lib.framework */,
 				8477DC2C22CB4FAB0015ABB2 /* LinkAccount.bundle */,
 			);
 			path = Lib;
