@@ -62,6 +62,12 @@
     _model.navReturnImg = [UIImage imageNamed:@"goback_nor"];
     //背景图片
 //    _model.authPageBackgroundImage = [UIImage imageNamed:@"background"];
+    //标题
+    _model.navTitle = [[NSAttributedString alloc]initWithString:@"一键登录" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    //状态栏颜色
+    _model.statusBarStyle = UIBarStyleBlackOpaque;
+    //导航栏颜色
+    _model.navColor = [UIColor blackColor];
     
     //一键登陆
     [[LMAuthSDKManager sharedSDKManager] getLoginTokenWithController:self model:_model timeout:888 complete:^(NSDictionary * _Nonnull resultDic) {

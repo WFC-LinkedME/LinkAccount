@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LMCustomModel : NSObject
 
+// 状态栏
+@property (nonatomic ,assign) UIBarStyle statusBarStyle;
+
 // 导航栏
 @property (nonatomic, strong) UIColor *navColor;
 @property (nonatomic, copy) NSAttributedString *navTitle;
