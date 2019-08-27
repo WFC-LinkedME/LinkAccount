@@ -68,6 +68,39 @@
     _model.statusBarStyle = UIBarStyleBlackOpaque;
     //导航栏颜色
     _model.navColor = [UIColor blackColor];
+    //logo距离屏幕顶部位置
+    _model.logoOffsetY = 30;
+    //隐私协议距离屏幕底部位置
+    _model.privacyOffsetY = 10;
+    //隐私协议，默认颜色和高亮颜色
+    _model.appPrivacyColor = @[[UIColor blackColor],[UIColor redColor]];
+
+    //自定义控件
+    _model.authViewBlock = ^(UIView *customView) {
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 500, 80, 80)];
+        [btn setBackgroundColor:[UIColor redColor]];
+        [btn setTitle:@"QQ登录" forState:(UIControlStateNormal)];
+        [btn setTag:1111];
+        [btn addTarget:weakSelf action:@selector(customBtn:) forControlEvents:UIControlEventTouchDown];
+        [btn setTintColor:[UIColor blackColor]];
+        [customView addSubview:btn];
+        
+        UIButton *btn1 = [[UIButton alloc]initWithFrame:CGRectMake(100, 500, 80, 80)];
+        [btn1 setTitle:@"微信登录" forState:(UIControlStateNormal)];
+        [btn1 setBackgroundColor:[UIColor redColor]];
+        [btn1 setTag:2222];
+        [btn1 addTarget:weakSelf action:@selector(customBtn:) forControlEvents:UIControlEventTouchDown];
+        [btn1 setTintColor:[UIColor blackColor]];
+        [customView addSubview:btn1];
+        
+        UIButton *btn2 = [[UIButton alloc]initWithFrame:CGRectMake(200, 500, 80, 80)];
+        [btn2 setTitle:@"微博登录" forState:(UIControlStateNormal)];
+        [btn2 setBackgroundColor:[UIColor redColor]];
+        [btn2 setTag:3333];
+        [btn2 addTarget:weakSelf action:@selector(customBtn:) forControlEvents:UIControlEventTouchDown];
+        [btn2 setTintColor:[UIColor blackColor]];
+        [customView addSubview:btn2];
+    };
     
     //一键登陆
     [[LMAuthSDKManager sharedSDKManager] getLoginTokenWithController:self model:_model timeout:888 complete:^(NSDictionary * _Nonnull resultDic) {
@@ -140,5 +173,11 @@
     return currentTimeString;
 }
 
+- (void)customBtn:(UIButton *)btn{
+    NSString *str = [NSString stringWithFormat:@"第%ld个按钮被点击了",(long)btn.tag];
+    UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"标题" message:str delegate:nil cancelButtonTitle:nil otherButtonTitles:@"哦", nil];
+    [alert show];
+    [[LMAuthSDKManager sharedSDKManager] closeAuthView];
+}
 
 @end

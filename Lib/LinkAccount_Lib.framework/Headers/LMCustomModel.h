@@ -12,7 +12,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ 版本注意事项:
+ 授权页面的各个控件的Y轴默认值都是以375*667屏幕为基准 系数 ： 当前屏幕高度/667
+ 1、当设置Y轴并有效时 偏移量OffsetY属于相对导航栏的绝对Y值
+ 2、（负数且超出当前屏幕无效）为保证各个屏幕适配,请自行设置好Y轴在屏幕上的比例（推荐:当前屏幕高度/667）
+ */
+
 @interface LMCustomModel : NSObject
+
+// 自定义View
+@property (nonatomic,copy) void(^authViewBlock)(UIView *customView);
 
 // 状态栏
 @property (nonatomic ,assign) UIBarStyle statusBarStyle;
@@ -22,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSAttributedString *navTitle;
 
 // logo图片
+@property (nonatomic,assign) CGFloat logoOffsetY;
 @property (nonatomic, strong) UIImage *logoImage;
 @property (nonatomic, assign) BOOL logoIsHidden;
 
@@ -38,6 +49,9 @@ NS_ASSUME_NONNULL_BEGIN
  @[激活状态的图片,失效状态的图片,高亮状态的图片]
  */
 @property (nonatomic,strong) NSArray *logBtnImgs;
+
+//13、LOGO图片偏移量,距离顶部位置
+@property (nonatomic,assign) CGFloat logBtnOffsetY;
 @property (nonatomic, copy) NSString *loginBtnText;
 @property (nonatomic, strong) UIColor *loginBtnTextColor;
 
@@ -48,7 +62,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy) NSArray *privacyOne;
 @property (nonatomic, copy) NSArray *privacyTwo;
-@property (nonatomic, strong) UIColor *privacyColor;
+
+//隐私条款Y偏移量(注:此属性为与屏幕底部的距离)
+@property (nonatomic,assign) CGFloat privacyOffsetY;
+@property (nonatomic,strong) NSArray *appPrivacyColor;
+
 
 // 切换账号
 @property (nonatomic, assign) BOOL changeBtnIsHidden;
