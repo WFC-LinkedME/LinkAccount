@@ -44,27 +44,22 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat numberSize;
 
 // 登录
-/**
- 登录按钮背景图片添加到数组(顺序如下)
- @[激活状态的图片,失效状态的图片,高亮状态的图片]
- */
+
+//登录按钮背景图片添加到数组(顺序如下)@[激活状态的图片,失效状态的图片,高亮状态的图片]
 @property (nonatomic,strong) NSArray *logBtnImgs;
 
 //13、LOGO图片偏移量,距离顶部位置
-@property (nonatomic,assign) CGFloat logBtnOffsetY;
 @property (nonatomic, copy) NSString *loginBtnText;
 @property (nonatomic, strong) UIColor *loginBtnTextColor;
 
-// 协议
-/**
- 隐私协议数组u顺序如下
- @[@"xxxx隐私协议",@"https://www.xxx.com"]
- */
+// 隐私协议
+
+//隐私协议数组u顺序如下@[@"xxxx隐私协议",@"https://www.xxx.com"]
 @property (nonatomic, copy) NSArray *privacyOne;
 @property (nonatomic, copy) NSArray *privacyTwo;
-
 //隐私条款Y偏移量(注:此属性为与屏幕底部的距离)
 @property (nonatomic,assign) CGFloat privacyOffsetY;
+//隐私条款名称颜色 @[基础文字颜色,条款颜色]
 @property (nonatomic,strong) NSArray *appPrivacyColor;
 
 
