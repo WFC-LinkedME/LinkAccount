@@ -43,17 +43,17 @@
     
     __weak typeof(self) weakSelf = self;
       //自定义Model
-    _model = [LMCustomModel new];
+    _model = [[LMCustomModel alloc]init];
     //LOGO
-    _model.logoImage = [UIImage imageNamed:@"logo"];
+    _model.logoImg = [UIImage imageNamed:@"logo"];
     //是否隐藏其他方式登陆按钮
-    _model.changeBtnIsHidden = NO;
+    _model.swithAccHidden = NO;
     //登录按钮文字
-    _model.loginBtnText = @"一键登录";
+    _model.logBtnText = @"一键登录";
     //自定义隐私条款1
-    _model.privacyOne   = @[@"用户服务条款1",@"https://www.baidu.com"];
+    _model.appPrivacyOne   = @[@"用户服务条款1",@"https://www.baidu.com"];
     //自定义隐私条款2
-    _model.privacyTwo   = @[@"用户服务条款2",@"https://www.baidu.com"];
+    _model.appPrivacyTwo   = @[@"用户服务条款2",@"https://www.baidu.com"];
     //隐私条款复选框非选中状态
     _model.uncheckedImg = [UIImage imageNamed:@"checkBox_unSelected"];
     //隐私条款复选框选中状态
@@ -63,33 +63,41 @@
     //返回按钮
     _model.navReturnImg = [UIImage imageNamed:@"goback_nor"];
     //背景图片
-    _model.authPageBackgroundImage = [self createImageWithColor:[UIColor groupTableViewBackgroundColor]];
+//    _model.authPageBackgroundImage = [self createImageWithColor:[UIColor groupTableViewBackgroundColor]];
     //标题
-    _model.navTitle = [[NSAttributedString alloc]initWithString:@"一键登录" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    _model.navText = [[NSAttributedString alloc]initWithString:@"一键登录" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     //状态栏颜色
-    _model.statusBarStyle = UIBarStyleBlackOpaque;
+    _model.barStyle = UIBarStyleBlackOpaque;
     //导航栏颜色
     _model.navColor = [UIColor blackColor];
     //logo距离屏幕顶部位置
-    _model.logoOffsetY = 30;
+    _model.logoOffsetY = 100;
     //隐私协议距离屏幕底部位置
-    _model.privacyOffsetY = 10;
+//    _model.privacyOffsetY = 100;
     //隐私协议，默认颜色和高亮颜色
-    _model.appPrivacyColor = @[[UIColor grayColor],[UIColor redColor]];
+    _model.privacyTitleColor = [UIColor redColor];
 
-    //自定义控件
-    _model.authViewBlock = ^(UIView *customView) {
-        NSArray *btnTitles = @[@"微信登录",@"微博登录",@"QQ登录"];
-        for (int i = 0; i<3; i++) {
-            UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(58 + 110*i, 500, 80, 80)];
-            [btn setBackgroundColor:[UIColor redColor]];
-            [btn setTitle:btnTitles[i] forState:(UIControlStateNormal)];
-            [btn setTag:i + 1000];
-            [btn addTarget:weakSelf action:@selector(customBtn:) forControlEvents:UIControlEventTouchDown];
-            [btn setTintColor:[UIColor blackColor]];
-            [customView addSubview:btn];
-        }
-    };
+    _model.appPrivacyColor = @[[UIColor blueColor],[UIColor redColor]];
+
+//    _model.appPrivacyColor = @[[UIColor grayColor],[UIColor redColor]];
+
+    _model.swithAccHidden = YES;
+//    自定义控件
+    
+    //自定义view
+     [_model setAuthViewBlock:^(UIView * _Nonnull customView, CGRect logoFrame, CGRect numberFrame, CGRect sloganFrame, CGRect loginBtnFrame, CGRect privacyFrame) {
+         
+         NSArray *btnTitles = @[@"微信登录",@"微博登录",@"QQ登录"];
+         for (int i = 0; i<3; i++) {
+             UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(58 + 110*i, 500, 80, 80)];
+             [btn setBackgroundColor:[UIColor redColor]];
+             [btn setTitle:btnTitles[i] forState:(UIControlStateNormal)];
+             [btn setTag:i + 1000];
+             [btn addTarget:weakSelf action:@selector(customBtn:) forControlEvents:UIControlEventTouchUpInside];
+             [btn setTintColor:[UIColor blackColor]];
+             [customView addSubview:btn];
+         }
+     }];
     
     //一键登陆
     [[LMAuthSDKManager sharedSDKManager] getLoginTokenWithController:self model:_model timeout:888 complete:^(NSDictionary * _Nonnull resultDic) {
