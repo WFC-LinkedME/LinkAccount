@@ -438,7 +438,7 @@ class ViewController: UIViewController {
 
 ##三.授权界面修改
 
-![](https://pagedoc.lkme.cc/.gitbook/assets/sdk-shou-quan-ye-she-ji-gui-fan.jpg)
+![](https://pagedoc.lkme.cc/assets/ios_account.png)
 可以调整属性
 
 ```
