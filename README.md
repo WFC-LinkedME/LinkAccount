@@ -1,7 +1,5 @@
 # LinkAccount iOS对接文档
 
-
-
 当前版本：2.0.1
 
 发版时间：2019年10月24日
@@ -652,5 +650,7 @@ Info.plist -> App Transport Security Settings -> Allow Arbitrary Loads -> YES
 		</dict>
 	</dict>
 ```
+=======
+参见：[LinkAccount iOS对接文档](https://pagedoc.lkme.cc/linkaccount/linkaccount-integrated-document/ios-sdk.html)
 
 
