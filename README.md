@@ -2,10 +2,16 @@
 
 
 
-当前版本：2.0.0
+当前版本：2.0.1
 
-发版时间：2019年09月20日
+发版时间：2019年10月24日
 
+> 新增：
+
+* 支持弹窗模式打开授权登录页
+* 提供无界面版本（需添加白名单）
+
+最近更新：2.0.0
 
 > 新增：
 
@@ -18,7 +24,7 @@
 
 * 修复弱网环境下或双卡手机切换网络时，预取号回调失败存在不返回的情况
 
-文档最后更新时间：2019年09月20日
+文档最后更新时间：2019年10月24日
 
 版本更新：所有版本通用方式——替换SDK静态库， 删除旧版本SDK所有相关的`.framework``.bundle`文件，清除缓存，再导入新版SDK中的所有`.framework``.bundle`文件（.bundle文件注意保留开发者自定义资源），详细说明请移步至「升级指南」
 
@@ -564,6 +570,15 @@ class ViewController: UIViewController {
 @property (nonatomic, assign) float privacyHeight;
 // 12.隐私协议字体大小
 @property (nonatomic, assign) float privacyFontSize;
+
+#pragma mark 窗口模式
+
+// 是否使用弹窗模式
+@property (nonatomic, assign) BOOL useWindow;
+// 窗口圆角（非窗口模式下设置该值无效）
+@property (nonatomic, assign) CGFloat authWindowCornerRadius;
+// 页面打开动画
+@property (nonatomic, assign) UIModalPresentationStyle presentationStyle;
 ```
 
 

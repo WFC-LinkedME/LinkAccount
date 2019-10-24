@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark 自定义控件
 // 1.授权界面自定义控件View的Block
-@property (nonatomic,   copy) void(^authViewBlock)(UIView * customView ,CGRect logoFrame, CGRect  numberFrame, CGRect sloganFrame ,CGRect loginBtnFrame, CGRect privacyFrame);
+@property (nonatomic,   copy) void(^authViewBlock)(UIView * customView ,CGRect logoFrame, CGRect  numberFrame, CGRect sloganFrame ,CGRect loginBtnFrame, CGRect privacyFrame ,CGRect swithAccFrame);
 
 // 2.授权界面背景图片
 @property (nonatomic, strong) UIImage *authPageBackgroundImage;
@@ -141,6 +141,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) float privacyHeight;
 // 12.隐私协议字体大小
 @property (nonatomic, assign) float privacyFontSize;
+
+
+#pragma mark 窗口模式
+
+// 是否使用弹窗模式
+@property (nonatomic, assign) BOOL useWindow;
+// 窗口圆角（非窗口模式下设置该值无效）
+@property (nonatomic, assign) CGFloat authWindowCornerRadius;
+// 页面打开动画
+@property (nonatomic, assign) UIModalPresentationStyle presentationStyle;
 
 @end
 

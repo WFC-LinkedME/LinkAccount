@@ -45,21 +45,21 @@
       //自定义Model
     _model = [[LMCustomModel alloc]init];
     //LOGO
-    _model.logoImg = [UIImage imageNamed:@"logo"];
+//    _model.logoImg = [UIImage imageNamed:@"logo"];
     //是否隐藏其他方式登陆按钮
-    _model.swithAccHidden = NO;
+//    _model.swithAccHidden = NO;
     //登录按钮文字
-    _model.logBtnText = @"一键登录";
+//    _model.logBtnText = @"一键登录";
     //自定义隐私条款1
     _model.appPrivacyOne   = @[@"用户服务条款1",@"https://www.baidu.com"];
     //自定义隐私条款2
     _model.appPrivacyTwo   = @[@"用户服务条款2",@"https://www.baidu.com"];
     //隐私条款复选框非选中状态
-    _model.uncheckedImg = [UIImage imageNamed:@"checkBox_unSelected"];
+//    _model.uncheckedImg = [UIImage imageNamed:@"checkBox_unSelected"];
     //隐私条款复选框选中状态
-    _model.checkedImg   = [UIImage imageNamed:@"checkBox_selected"];
+//    _model.checkedImg   = [UIImage imageNamed:@"checkBox_selected"];
     //登陆按钮
-    _model.logBtnImgs   = [NSArray arrayWithObjects:[UIImage imageNamed:@"loginBtn_Nor"],[UIImage imageNamed:@"loginBtn_Dis"] ,[UIImage imageNamed:@"loginBtn_Pre"],nil];
+//    _model.logBtnImgs   = [NSArray arrayWithObjects:[UIImage imageNamed:@"loginBtn_Nor"],[UIImage imageNamed:@"loginBtn_Dis"] ,[UIImage imageNamed:@"loginBtn_Pre"],nil];
     //返回按钮
     _model.navReturnImg = [UIImage imageNamed:@"goback_nor"];
     //背景图片
@@ -71,33 +71,44 @@
     //导航栏颜色
     _model.navColor = [UIColor blackColor];
     //logo距离屏幕顶部位置
-    _model.logoOffsetY = 100;
+//    _model.logoOffsetY = 100;
     //隐私协议距离屏幕底部位置
 //    _model.privacyOffsetY = 100;
     //隐私协议，默认颜色和高亮颜色
-    _model.privacyTitleColor = [UIColor redColor];
+//    _model.privacyTitleColor = [UIColor redColor];
 
-    _model.appPrivacyColor = @[[UIColor blueColor],[UIColor redColor]];
+//    _model.appPrivacyColor = @[[UIColor blueColor],[UIColor redColor]];
 
 //    _model.appPrivacyColor = @[[UIColor grayColor],[UIColor redColor]];
 
-    _model.swithAccHidden = YES;
-//    自定义控件
+//    _model.swithAccHidden = YES;
+
+    //使用弹窗模式
+    _model.useWindow = YES;
+    //弹出窗口圆角
+    _model.authWindowCornerRadius = 20;
+
     
     //自定义view
-     [_model setAuthViewBlock:^(UIView * _Nonnull customView, CGRect logoFrame, CGRect numberFrame, CGRect sloganFrame, CGRect loginBtnFrame, CGRect privacyFrame) {
-         
-         NSArray *btnTitles = @[@"微信登录",@"微博登录",@"QQ登录"];
-         for (int i = 0; i<3; i++) {
-             UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(58 + 110*i, 500, 80, 80)];
-             [btn setBackgroundColor:[UIColor redColor]];
-             [btn setTitle:btnTitles[i] forState:(UIControlStateNormal)];
-             [btn setTag:i + 1000];
-             [btn addTarget:weakSelf action:@selector(customBtn:) forControlEvents:UIControlEventTouchUpInside];
-             [btn setTintColor:[UIColor blackColor]];
-             [customView addSubview:btn];
-         }
-     }];
+       [_model setAuthViewBlock:^(UIView * _Nonnull customView, CGRect logoFrame, CGRect numberFrame, CGRect sloganFrame, CGRect loginBtnFrame, CGRect privacyFrame ,CGRect swithAccFrame) {
+
+             UIView * view = [[UIView alloc]init];
+    
+             view.frame = CGRectMake(loginBtnFrame.origin.x, swithAccFrame.origin.y + 45, loginBtnFrame.size.width, 30);
+             [customView addSubview:view];
+             
+             NSArray *btnTitles = @[@"wechat_account",@"qq_account",@"weibo_account"];
+             for (int i = 0; i<3; i++) {
+     //            UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(50 + 90*i, swithAccFrame.origin.y + 45, 30, 30)];
+                 UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake((view.frame.size.width -15) /4 + (view.frame.size.width -15) /3 *i, swithAccFrame.origin.y + 65, 30, 30)];
+
+                 [btn setImage:[UIImage imageNamed:btnTitles[i]] forState:UIControlStateNormal];
+                 [btn setTag:i + 1000];
+                 [btn addTarget:weakSelf action:@selector(xxxx:) forControlEvents:UIControlEventTouchUpInside];
+                 [btn setTintColor:[UIColor blackColor]];
+                 [customView addSubview:btn];
+             }
+         }];
     
     //一键登陆
     [[LMAuthSDKManager sharedSDKManager] getLoginTokenWithController:self model:_model timeout:888 complete:^(NSDictionary * _Nonnull resultDic) {
@@ -120,6 +131,13 @@
         
         [weakSelf addLog:@"用户选择使用其他方式登录"];
         
+    }];
+}
+
+//获取AccesCode（bundle id需要添加白名单）
+-(IBAction)getAccessCode:(id)sender{
+    [[LMAuthSDKManager sharedSDKManager] getAccessTokensWithController:self complete:^(NSDictionary * _Nonnull resultDic) {
+        [self addLog:[self convertToJsonData:resultDic]];
     }];
 }
 
