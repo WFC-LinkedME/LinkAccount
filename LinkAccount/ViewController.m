@@ -99,12 +99,11 @@
              
              NSArray *btnTitles = @[@"wechat_account",@"qq_account",@"weibo_account"];
              for (int i = 0; i<3; i++) {
-     //            UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(50 + 90*i, swithAccFrame.origin.y + 45, 30, 30)];
                  UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake((view.frame.size.width -15) /4 + (view.frame.size.width -15) /3 *i, swithAccFrame.origin.y + 65, 30, 30)];
 
                  [btn setImage:[UIImage imageNamed:btnTitles[i]] forState:UIControlStateNormal];
                  [btn setTag:i + 1000];
-                 [btn addTarget:weakSelf action:@selector(xxxx:) forControlEvents:UIControlEventTouchUpInside];
+                 [btn addTarget:weakSelf action:@selector(customBtn:) forControlEvents:UIControlEventTouchUpInside];
                  [btn setTintColor:[UIColor blackColor]];
                  [customView addSubview:btn];
              }
@@ -115,12 +114,13 @@
         
         [weakSelf addLog:[self convertToJsonData:resultDic]];
 
+        //关闭授权登录页
+        [[LMAuthSDKManager sharedSDKManager] closeAuthView];
+
         if ([resultDic[@"resultCode"] isEqualToString:SDKStatusCodeSuccess]) {
             
             NSLog(@"登陆成功");
-            
-            [[LMAuthSDKManager sharedSDKManager] closeAuthView];
-            
+                        
         }else{
             
             NSLog(@"%@",resultDic);
