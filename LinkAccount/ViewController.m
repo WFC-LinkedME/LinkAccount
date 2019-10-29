@@ -98,13 +98,19 @@
              [customView addSubview:view];
              
              NSArray *btnTitles = @[@"wechat_account",@"qq_account",@"weibo_account"];
-             for (int i = 0; i<3; i++) {
+             
+           for (int i = 0; i<3; i++) {
+               
                  UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake((view.frame.size.width -15) /4 + (view.frame.size.width -15) /3 *i, swithAccFrame.origin.y + 65, 30, 30)];
 
                  [btn setImage:[UIImage imageNamed:btnTitles[i]] forState:UIControlStateNormal];
+               
                  [btn setTag:i + 1000];
+               
                  [btn addTarget:weakSelf action:@selector(customBtn:) forControlEvents:UIControlEventTouchUpInside];
+               
                  [btn setTintColor:[UIColor blackColor]];
+               
                  [customView addSubview:btn];
              }
          }];
