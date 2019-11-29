@@ -9,6 +9,10 @@
 #import "ViewController.h"
 #import <LinkAccount_Lib/LinkAccount.h>
 
+#import <CoreTelephony/CTCarrier.h>
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
+#import <CoreTelephony/CTCellularPlanProvisioningRequest.h>
+
 @interface ViewController()
 
 @property (strong, nonatomic) LMCustomModel *model;
@@ -23,7 +27,30 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _logStr = [[NSMutableString alloc]init];
+    
+    self.textView = [[UITextView alloc]initWithFrame:CGRectMake(20, 275, self.view.bounds.size.width-40, self.view.bounds.size.height)];
+    [self.view addSubview:self.textView];
+    
+    [ViewController getIMSI];
+    CTCellularPlanProvisioningRequest * cellular = [CTCellularPlanProvisioningRequest new];
+    NSLog(@"%@",[cellular ICCID]);
+    
 }
+
++ (NSString *)getIMSI{
+
+     CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];
+    
+
+     CTCarrier *carrier = [info subscriberCellularProvider];
+
+     NSString *mcc = [carrier mobileCountryCode];
+     NSString *mnc = [carrier mobileNetworkCode];
+
+     NSString *imsi = [NSString stringWithFormat:@"%@%@", mcc, mnc];
+
+     return imsi;
+ }
 
 //预取号,登陆前60s调用此方法
 - (IBAction)getphoneNumber:(id)sender {
@@ -41,6 +68,8 @@
 
 - (IBAction)showLogin:(id)sender {
     
+#pragma mark 自定义授权页面
+    
     __weak typeof(self) weakSelf = self;
       //自定义Model
     _model = [[LMCustomModel alloc]init];
@@ -51,9 +80,9 @@
     //登录按钮文字
 //    _model.logBtnText = @"一键登录";
     //自定义隐私条款1
-    _model.appPrivacyOne   = @[@"用户服务条款1",@"https://www.baidu.com"];
+    _model.appPrivacyOne   = @[@"用户服务条款1",@"https://www.linkedme.cc"];
     //自定义隐私条款2
-    _model.appPrivacyTwo   = @[@"用户服务条款2",@"https://www.baidu.com"];
+    _model.appPrivacyTwo   = @[@"用户服务条款2",@"https://www.linkedme.cc"];
     //隐私条款复选框非选中状态
 //    _model.uncheckedImg = [UIImage imageNamed:@"checkBox_unSelected"];
     //隐私条款复选框选中状态
@@ -74,13 +103,11 @@
 //    _model.logoOffsetY = 100;
     //隐私协议距离屏幕底部位置
 //    _model.privacyOffsetY = 100;
-    //隐私协议，默认颜色和高亮颜色
+    //隐私协议标题颜色，默认颜色和高亮颜色
 //    _model.privacyTitleColor = [UIColor redColor];
-
+    //隐私协议颜色，默认颜色和高亮颜色
 //    _model.appPrivacyColor = @[[UIColor blueColor],[UIColor redColor]];
-
-//    _model.appPrivacyColor = @[[UIColor grayColor],[UIColor redColor]];
-
+    //是否隐藏切换按钮
 //    _model.swithAccHidden = YES;
 
     //使用弹窗模式
@@ -89,7 +116,8 @@
     _model.authWindowCornerRadius = 20;
 
     
-    //自定义view
+#pragma mark 自定义View（添加其它方式登录）
+    
        [_model setAuthViewBlock:^(UIView * _Nonnull customView, CGRect logoFrame, CGRect numberFrame, CGRect sloganFrame, CGRect loginBtnFrame, CGRect privacyFrame ,CGRect swithAccFrame) {
 
              UIView * view = [[UIView alloc]init];
@@ -115,7 +143,8 @@
              }
          }];
     
-    //一键登陆
+#pragma mark 一键登陆
+    
     [[LMAuthSDKManager sharedSDKManager] getLoginTokenWithController:self model:_model timeout:888 complete:^(NSDictionary * _Nonnull resultDic) {
         
         [weakSelf addLog:[self convertToJsonData:resultDic]];
@@ -139,6 +168,7 @@
         
     }];
 }
+
 
 //获取AccesCode（bundle id需要添加白名单）
 -(IBAction)getAccessCode:(id)sender{

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name                  = "LinkedME_LinkAccount"
-s.version              = '2.0.2'
+s.version              = '2.0.4'
 s.summary               = "LinkedME LinkAccount"
 s.description           = <<-DESC
 LinkedME Deeplink for iOS.
@@ -29,6 +29,5 @@ s.libraries = 'c++', 'z.1.2.8'
 s.platform              = :ios
 s.ios.deployment_target = '9.0'
 s.requires_arc          = true
-
 
 end

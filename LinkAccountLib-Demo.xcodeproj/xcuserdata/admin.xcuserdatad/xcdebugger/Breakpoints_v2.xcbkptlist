@@ -18,18 +18,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4E24450A-E4FC-4ADE-9137-E1A8BDAEB129"
-            shouldBeEnabled = "No"
+            uuid = "9D554DE7-45B1-4A3E-98C5-ADF8FE15BD9E"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Test1/ViewController.m"
-            timestampString = "582014701.143805"
+            filePath = "LinkAccount/AppDelegate.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "-login:"
-            landmarkType = "7">
+            startingLineNumber = "8"
+            endingLineNumber = "8"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
