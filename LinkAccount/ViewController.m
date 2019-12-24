@@ -102,7 +102,7 @@
     //logo距离屏幕顶部位置
 //    _model.logoOffsetY = 100;
     //隐私协议距离屏幕底部位置
-//    _model.privacyOffsetY = 100;
+    _model.privacyOffsetY = 100;
     //隐私协议标题颜色，默认颜色和高亮颜色
 //    _model.privacyTitleColor = [UIColor redColor];
     //隐私协议颜色，默认颜色和高亮颜色
@@ -111,7 +111,7 @@
 //    _model.swithAccHidden = YES;
 
     //使用弹窗模式
-    _model.useWindow = YES;
+//    _model.useWindow = YES;
     //弹出窗口圆角
     _model.authWindowCornerRadius = 20;
 
