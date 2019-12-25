@@ -98,11 +98,11 @@
     //状态栏颜色
     _model.barStyle = UIBarStyleBlackOpaque;
     //导航栏颜色
-    _model.navColor = [UIColor blackColor];
+    _model.navColor = [UIColor whiteColor];
     //logo距离屏幕顶部位置
 //    _model.logoOffsetY = 100;
     //隐私协议距离屏幕底部位置
-    _model.privacyOffsetY = 100;
+    _model.privacyOffsetY = 20;
     //隐私协议标题颜色，默认颜色和高亮颜色
 //    _model.privacyTitleColor = [UIColor redColor];
     //隐私协议颜色，默认颜色和高亮颜色
