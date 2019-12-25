@@ -95,6 +95,8 @@
 //    _model.authPageBackgroundImage = [self createImageWithColor:[UIColor groupTableViewBackgroundColor]];
     //标题
     _model.navText = [[NSAttributedString alloc]initWithString:@"一键登录" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    _model.navCustom = YES;
     //状态栏颜色
     _model.barStyle = UIBarStyleBlackOpaque;
     //导航栏颜色
