@@ -1,5 +1,11 @@
 # LinkAccount iOS对接文档
 
+当前版本：2.1.0
+> 优化：
+
+* 电信SDK更新
+* 电信accessCode兼容
+
 当前版本：2.0.1
 
 发版时间：2019年10月24日
@@ -57,7 +63,7 @@ LinkAccount SDK目前仅提供两种集成方式，手动集成，cocoaPods集�
 pod 'LinkedME_LinkAccount'
 
 #集成指定版本SDK:
-pod 'LinkedME_LinkAccount', '1.0.0'
+pod 'LinkedME_LinkAccount', '2.1.0'
 
 保存并执行pod install,然后用后缀为.xcworkspace的文件打开工程。
 ```
@@ -179,7 +185,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 **接口作用**
 
-电信、联通、移动预取号 :初始化成功后，如果当前为电信/联通/移动，将调用预取号，可以提前获知当前用户的手机网络环境是否符合一键登录的使用条件，成功后将得到用于一键登录使用的临时凭证，默认的凭证有效期60s(电信)/30min(联通)/60min(移动)。
+电信、联通、移动预取号 :初始化成功后，如果当前为电信/联通/移动，将调用预取号，可以提前获知当前用户的手机网络环境是否符合一键登录的使用条件，成功后将得到用于一键登录使用的临时凭证，默认的凭证有效期，电信：预取号有效期为 10 分钟/联通：30 分钟/移动：有效期分钟，一次有效，同一用户（手机号） 10分钟内获取token且未使用的数量不超过30个；。
 
 
 **使用场景**
@@ -361,23 +367,51 @@ class ViewController: UIViewController {
 > 成功回调
 
 ```
+//移动
 {
-	{
 	"resultCode": "6666",
-	"telecom": "CU",
-	"accessToken": "nm4434942e5a874835b78952959e9fbb65",
-	"os": "0",
-	"gwAuth" : "8787"
-	}
+	"operatorType": "CM",
+	"accessToken": "STsid00000015783159423136R9MZRTTB05bIDw0uVGuPZuNYPxkXK3r",
+	"operatorCode": "103000",
+	"os": "0"
 }
+
+//联通
+{
+	"resultCode": "6666",
+	"operatorType": "CU",
+	"accessToken": "762b8afa55b47c4da2bb2624570c4925",
+	"operatorCode": "0",
+	"os": "0"
+}
+
+//电信
+{
+	"result": 0,
+	"gwAuth": "0000",
+	"number": "133****6090",
+	"expiredTime": 3600,
+	"operatorType": "CT",
+	"msg": "success",
+	"accessCode": "nm7b8244ca4cb749c68ec03f34f470d623",
+	"accessToken": "nm7b8244ca4cb749c68ec03f34f470d623",
+	"reqId": "15608796CLTSrJDPqeGRJvDVPCVpzGEL",
+	"resultCode": "6666"
+}
+
+
 ```
+>备注：置换手机号必要参数，移动/联通：operatorType & accessToken ，电信：operatorType & gwAuth & accessToken；
+>
+
 **参数描述**
 
 | 字段 | 类型 | 说明 |
 | --- | --- | --- |
 | resultCode | NSString | 状态码 |
-| telecom | NSString |  <div>当前数据流量卡的运营商类型</div> <div> CM 移动</div> <div>CT 电信</div> <div>CU 联通</div>|
+| operatorType | NSString |  <div>当前数据流量卡的运营商类型</div> <div> CM 移动</div> <div>CT 电信</div> <div>CU 联通</div>|
 | accessToken | NSString | token，置换令牌，用来和后台置换手机号。一次有效，有效期3min |
+| accessCode | NSString | token，置换令牌，用来和后台置换手机号。一次有效，有效期3min （电信早期SDK，使用accessCode字段）|
 | gwAuth | NSString | 仅电信运营商返回此字段，配合accessToken置换手机号 |
 | os | NSString | 手机系统 |
 
@@ -442,18 +476,15 @@ class ViewController: UIViewController {
 
 ##三.授权界面修改
 
-![](https://pagedoc.lkme.cc/.gitbook/assets/sdk-shou-quan-ye-she-ji-gui-fan.jpg)
+![](https://docs.linkedme.cc/Public/Uploads/2019-11-23/5dd89fa2833fa.png)
 可以调整属性
 
 ```
 #pragma mark 自定义控件
 // 1.授权界面自定义控件View的Block
 @property (nonatomic,   copy) void(^authViewBlock)(UIView * customView ,CGRect logoFrame, CGRect  numberFrame, CGRect sloganFrame ,CGRect loginBtnFrame, CGRect privacyFrame);
-
 // 2.授权界面背景图片
 @property (nonatomic, strong) UIImage *authPageBackgroundImage;
-
-
 #pragma mark 导航栏
 // 1.导航栏颜色
 @property (nonatomic, strong) UIColor *navColor;
@@ -469,8 +500,6 @@ class ViewController: UIViewController {
 @property (nonatomic, strong) id navControl;
 // 7.返回按钮隐藏
 @property (nonatomic, assign) BOOL backBtnHidden;
-
-
 #pragma mark LOGO图片设置
 // 1.LOGO图片
 @property (nonatomic, strong) UIImage *logoImg;
@@ -484,7 +513,6 @@ class ViewController: UIViewController {
 @property (nonatomic, assign) CGFloat logoOffsetX;
 // 6.LOGO图片隐藏
 @property (nonatomic, assign) BOOL logoHidden;
-
 #pragma mark slogon
 // 1.文字颜色
 @property (nonatomic, strong) UIColor *slogonTextColor;
@@ -492,8 +520,6 @@ class ViewController: UIViewController {
 @property (nonatomic, assign) CGFloat slogonTextOffSetY;
 // 3.slogen 轴x偏移
 @property (nonatomic, assign) CGFloat slogonTextOffSetX;
-
-
 #pragma mark 号码框设置
 // 1.号码颜色
 @property (nonatomic, strong) UIColor *numberColor;
@@ -505,8 +531,6 @@ class ViewController: UIViewController {
 @property (nonatomic, assign) CGFloat numberOffsetX;
 // 5.号码栏高h 注意：必须大于80
 @property (nonatomic, assign) CGFloat numberHeight;
-
-
 #pragma mark 登录按钮
 // 1.登录按钮文本
 @property (nonatomic,   copy) NSString *logBtnText;
@@ -524,7 +548,6 @@ class ViewController: UIViewController {
 @property (nonatomic, assign) CGFloat logBtnHeight;
 // 8.登录按钮高h 注意：必须大于40
 @property (nonatomic, assign) CGFloat logBtnWidth;
-
 #pragma mark  切换账号
 // 1.隐藏按钮
 @property (nonatomic, assign) BOOL swithAccHidden;
@@ -538,7 +561,6 @@ class ViewController: UIViewController {
 @property (nonatomic, assign) CGFloat swithAccFontSize;
 // 6.标题内容
 @property (nonatomic,   copy) NSString *swithAccTitle;
-
 #pragma mark 隐私协议
 // 1.复选框未选中时图片
 @property (nonatomic, strong) UIImage *uncheckedImg;
@@ -568,9 +590,7 @@ class ViewController: UIViewController {
 @property (nonatomic, assign) float privacyHeight;
 // 12.隐私协议字体大小
 @property (nonatomic, assign) float privacyFontSize;
-
 #pragma mark 窗口模式
-
 // 是否使用弹窗模式
 @property (nonatomic, assign) BOOL useWindow;
 // 窗口圆角（非窗口模式下设置该值无效）
