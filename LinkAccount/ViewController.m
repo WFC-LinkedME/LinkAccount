@@ -9,10 +9,6 @@
 #import "ViewController.h"
 #import <LinkAccount_Lib/LinkAccount.h>
 
-#import <CoreTelephony/CTCarrier.h>
-#import <CoreTelephony/CTTelephonyNetworkInfo.h>
-#import <CoreTelephony/CTCellularPlanProvisioningRequest.h>
-
 @interface ViewController()
 
 @property (strong, nonatomic) LMCustomModel *model;
@@ -31,26 +27,8 @@
     self.textView = [[UITextView alloc]initWithFrame:CGRectMake(20, 275, self.view.bounds.size.width-40, self.view.bounds.size.height)];
     [self.view addSubview:self.textView];
     
-    [ViewController getIMSI];
-    CTCellularPlanProvisioningRequest * cellular = [CTCellularPlanProvisioningRequest new];
-    NSLog(@"%@",[cellular ICCID]);
-    
 }
 
-+ (NSString *)getIMSI{
-
-     CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];
-    
-
-     CTCarrier *carrier = [info subscriberCellularProvider];
-
-     NSString *mcc = [carrier mobileCountryCode];
-     NSString *mnc = [carrier mobileNetworkCode];
-
-     NSString *imsi = [NSString stringWithFormat:@"%@%@", mcc, mnc];
-
-     return imsi;
- }
 
 //预取号,登陆前60s调用此方法
 - (IBAction)getphoneNumber:(id)sender {
