@@ -25,6 +25,7 @@
     _logStr = [[NSMutableString alloc]init];
     
     self.textView = [[UITextView alloc]initWithFrame:CGRectMake(20, 275, self.view.bounds.size.width-40, self.view.bounds.size.height)];
+    self.textView.editable = NO;
     [self.view addSubview:self.textView];
     
 }
