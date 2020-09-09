@@ -65,6 +65,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat slogonTextOffSetY;
 // 3.slogen 轴x偏移
 @property (nonatomic, assign) CGFloat slogonTextOffSetX;
+// 3.slogen 轴x偏移
+@property (nonatomic, assign) CGFloat slogonfontSize;
 
 
 #pragma mark 号码框设置
@@ -98,6 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 8.登录按钮高h 注意：必须大于40
 @property (nonatomic, assign) CGFloat logBtnWidth;
 
+
 #pragma mark  切换账号
 // 1.隐藏按钮
 @property (nonatomic, assign) BOOL swithAccHidden;
@@ -109,8 +112,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIColor *swithAccTextColor;
 // 5.字体大小
 @property (nonatomic, assign) CGFloat swithAccFontSize;
-// 6.标题内容
+// 6.标题内容 （6，7 二选一）
 @property (nonatomic,   copy) NSString *swithAccTitle;
+// 7.标题内容（AttributedString）
+@property (nonatomic,   copy) NSAttributedString *attributedSwithAccTitle;
 
 #pragma mark 隐私协议
 // 1.复选框未选中时图片
@@ -141,6 +146,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) float privacyHeight;
 // 12.隐私协议字体大小
 @property (nonatomic, assign) float privacyFontSize;
+// 13.自定义客户隐私协议点击方法
+@property (nonatomic,   copy) void(^privateClickInfo)(NSString *privacyTitle, NSURL *url);
+// 14.用户未同意隐私协议提示
+@property (nonatomic,   copy) NSString *appPrivacyWarningStr;
+// 15.用户未同意隐私协议提示Y偏移量(注:此属性为与屏幕顶部的距离)
+@property (nonatomic, assign) CGFloat appPrivacyWarningStrOffsetY;
+
 
 
 #pragma mark 窗口模式

@@ -18,6 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
+    //初始化
     [LMAuthSDKManager initWithKey:@"7e289a2484f4368dbafbd1e5c7d06903" complete:^(NSDictionary * _Nonnull resultDic) {
         
     }];

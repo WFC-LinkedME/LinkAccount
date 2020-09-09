@@ -8,10 +8,8 @@
 
 #import "ViewController.h"
 #import <LinkAccount_Lib/LinkAccount.h>
+#import <LinkAccount_Lib/LMAuthSDKManager.h>
 
-#import <CoreTelephony/CTCarrier.h>
-#import <CoreTelephony/CTTelephonyNetworkInfo.h>
-#import <CoreTelephony/CTCellularPlanProvisioningRequest.h>
 
 @interface ViewController()
 
@@ -30,27 +28,7 @@
     
     self.textView = [[UITextView alloc]initWithFrame:CGRectMake(20, 275, self.view.bounds.size.width-40, self.view.bounds.size.height)];
     [self.view addSubview:self.textView];
-    
-    [ViewController getIMSI];
-    CTCellularPlanProvisioningRequest * cellular = [CTCellularPlanProvisioningRequest new];
-    NSLog(@"%@",[cellular ICCID]);
-    
 }
-
-+ (NSString *)getIMSI{
-
-     CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];
-    
-
-     CTCarrier *carrier = [info subscriberCellularProvider];
-
-     NSString *mcc = [carrier mobileCountryCode];
-     NSString *mnc = [carrier mobileNetworkCode];
-
-     NSString *imsi = [NSString stringWithFormat:@"%@%@", mcc, mnc];
-
-     return imsi;
- }
 
 //预取号,登陆前60s调用此方法
 - (IBAction)getphoneNumber:(id)sender {
@@ -116,6 +94,8 @@
 //    _model.useWindow = YES;
     //弹出窗口圆角
     _model.authWindowCornerRadius = 20;
+    //默认勾选用户隐私协议
+    _model.privacyState = YES;
 
     
 #pragma mark 自定义View（添加其它方式登录）
@@ -147,31 +127,53 @@
     
 #pragma mark 一键登陆
     
+//    [[LMAuthSDKManager sharedSDKManager] getLoginTokenWithController:self model:_model timeout:888 complete:^(NSDictionary * _Nonnull resultDic) {
+//
+//          [weakSelf addLog:[self convertToJsonData:resultDic]];
+//
+//          //关闭授权登录页
+//          [[LMAuthSDKManager sharedSDKManager] closeAuthView];
+//
+//          if ([resultDic[@"resultCode"] isEqualToString:SDKStatusCodeSuccess]) {
+//
+//              NSLog(@"登陆成功");
+//
+//          }else{
+//              NSLog(@"%@",resultDic);
+//          }
+//
+//      } clickLoginBtn:^{
+//          NSLog(@"%@",@"用户点击了登录按钮");
+//
+//      } otherLogin:^{
+//          [weakSelf addLog:@"用户选择使用其他方式登录"];
+//      }];
+    
     [[LMAuthSDKManager sharedSDKManager] getLoginTokenWithController:self model:_model timeout:888 complete:^(NSDictionary * _Nonnull resultDic) {
-        
+
         [weakSelf addLog:[self convertToJsonData:resultDic]];
 
         //关闭授权登录页
         [[LMAuthSDKManager sharedSDKManager] closeAuthView];
 
         if ([resultDic[@"resultCode"] isEqualToString:SDKStatusCodeSuccess]) {
-            
+
             NSLog(@"登陆成功");
-                        
+
         }else{
-            
             NSLog(@"%@",resultDic);
-            
         }
         
-    } otherLogin:^{
+    } clickLoginBtn:^{
+        NSLog(@"点击了登录按钮");
         
+    }otherLogin:^{
+
         [weakSelf addLog:@"用户选择使用其他方式登录"];
-        
+
     }];
 }
-
-
+ 
 //获取AccesCode（bundle id需要添加白名单）
 -(IBAction)getAccessCode:(id)sender{
     [[LMAuthSDKManager sharedSDKManager] getAccessTokensWithController:self complete:^(NSDictionary * _Nonnull resultDic) {
