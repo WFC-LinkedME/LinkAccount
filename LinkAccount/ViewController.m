@@ -89,14 +89,16 @@
 //    _model.appPrivacyColor = @[[UIColor blueColor],[UIColor redColor]];
     //是否隐藏切换按钮
 //    _model.swithAccHidden = YES;
-
     //使用弹窗模式
 //    _model.useWindow = YES;
     //弹出窗口圆角
     _model.authWindowCornerRadius = 20;
     //默认勾选用户隐私协议
-    _model.privacyState = YES;
-
+//    _model.privacyState = YES;
+    
+//    _model.privacyFontSize = 13;
+    //不需要隐私协议复选框登录即表示同意服务协议
+//    _model.noChecked = YES;
     
 #pragma mark 自定义View（添加其它方式登录）
     

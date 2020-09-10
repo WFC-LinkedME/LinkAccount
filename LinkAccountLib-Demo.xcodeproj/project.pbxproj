@@ -17,7 +17,7 @@
 		84B624A722AF99020032D244 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B624A622AF99020032D244 /* main.m */; };
 		84B624CF22AF99F90032D244 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B624CE22AF99F90032D244 /* libc++.tbd */; };
 		84B624D122AF99FF0032D244 /* libz.1.2.8.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B624D022AF99FF0032D244 /* libz.1.2.8.tbd */; };
-		C4CB795F2507707B00AE8518 /* LinkAccount_Lib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CB795E2507707B00AE8518 /* LinkAccount_Lib.framework */; };
+		C44ECE972509D97E00776B25 /* LinkAccount_Lib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44ECE962509D97E00776B25 /* LinkAccount_Lib.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,8 +36,8 @@
 		84B624CC22AF99F00032D244 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		84B624CE22AF99F90032D244 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		84B624D022AF99FF0032D244 /* libz.1.2.8.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.8.tbd; path = usr/lib/libz.1.2.8.tbd; sourceTree = SDKROOT; };
+		C44ECE962509D97E00776B25 /* LinkAccount_Lib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LinkAccount_Lib.framework; sourceTree = "<group>"; };
 		C4CB79592507700800AE8518 /* LinkAccount_Lib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LinkAccount_Lib.framework; path = Lib/LinkAccount_Lib.framework; sourceTree = "<group>"; };
-		C4CB795E2507707B00AE8518 /* LinkAccount_Lib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LinkAccount_Lib.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,7 +47,7 @@
 			files = (
 				84B624D122AF99FF0032D244 /* libz.1.2.8.tbd in Frameworks */,
 				84B624CF22AF99F90032D244 /* libc++.tbd in Frameworks */,
-				C4CB795F2507707B00AE8518 /* LinkAccount_Lib.framework in Frameworks */,
+				C44ECE972509D97E00776B25 /* LinkAccount_Lib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,7 +57,7 @@
 		8477DC2A22CB4FAB0015ABB2 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				C4CB795E2507707B00AE8518 /* LinkAccount_Lib.framework */,
+				C44ECE962509D97E00776B25 /* LinkAccount_Lib.framework */,
 				841D6DE423B9BDA3006D92E7 /* LinkAccount.bundle */,
 			);
 			path = Lib;

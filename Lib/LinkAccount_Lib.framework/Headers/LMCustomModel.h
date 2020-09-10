@@ -122,37 +122,41 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIImage *uncheckedImg;
 // 2.复选框选中时图片
 @property (nonatomic, strong) UIImage *checkedImg;
+// 3.复选框图片大小
+@property (nonatomic, assign) float checkedImgSize;
+// 4.不需要确认复选框
+@property (nonatomic, assign) float noChecked;
+
 /**
  隐私协议数组u顺序如下
  @[@"xxxx隐私协议",@"https://www.xxx.com"]
  */
-// 3.用户自定义协议1
+// 5.用户自定义协议1
 @property (nonatomic,   copy) NSArray *appPrivacyOne;
-// 4.用户自定义协议2
+// 6.用户自定义协议2
 @property (nonatomic,   copy) NSArray *appPrivacyTwo;
-// 5.复选框默认勾选状态
+// 7.复选框默认勾选状态
 @property (nonatomic, assign) BOOL privacyState;
-// 6.隐私协议详情页标题颜色
+// 8.隐私协议详情页标题颜色
 @property (nonatomic, strong) UIColor *privacyTitleColor;
-// 7.隐私条款Y偏移量(注:此属性为与屏幕底部的距离)
+// 9.隐私条款Y偏移量(注:此属性为与屏幕底部的距离)
 @property (nonatomic, assign) CGFloat privacyOffsetY;
-// 8.隐私协议颜色，@[默认字体颜色，协议颜色]
+// 10.隐私协议颜色，@[默认字体颜色，协议颜色]
 @property (nonatomic, strong) NSArray *appPrivacyColor;
-// 9.隐私协议对齐状态
+// 11.隐私协议对齐状态
 @property (nonatomic, assign) NSTextAlignment privacyTextAlignment;
-// 10.隐私协距离屏幕边框位置
+// 12.隐私协距离屏幕边框位置
 @property (nonatomic, assign) float privacyMargin;
-// 11.隐私协议高度
+// 13.隐私协议高度
 @property (nonatomic, assign) float privacyHeight;
-// 12.隐私协议字体大小
+// 14.隐私协议字体大小
 @property (nonatomic, assign) float privacyFontSize;
-// 13.自定义客户隐私协议点击方法
+// 15.自定义客户隐私协议点击方法
 @property (nonatomic,   copy) void(^privateClickInfo)(NSString *privacyTitle, NSURL *url);
-// 14.用户未同意隐私协议提示
+// 16.用户未同意隐私协议提示
 @property (nonatomic,   copy) NSString *appPrivacyWarningStr;
-// 15.用户未同意隐私协议提示Y偏移量(注:此属性为与屏幕顶部的距离)
+// 17.用户未同意隐私协议提示Y偏移量(注:此属性为与屏幕顶部的距离)
 @property (nonatomic, assign) CGFloat appPrivacyWarningStrOffsetY;
-
 
 
 #pragma mark 窗口模式
