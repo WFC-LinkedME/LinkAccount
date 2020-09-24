@@ -157,7 +157,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,   copy) NSString *appPrivacyWarningStr;
 // 17.用户未同意隐私协议提示Y偏移量(注:此属性为与屏幕顶部的距离)
 @property (nonatomic, assign) CGFloat appPrivacyWarningStrOffsetY;
-
+// 18.提示框距离边距文字距离
+@property (nonatomic, assign) CGFloat margin;
+// 19.未勾选隐私协议提示框 圆角
+@property (nonatomic, assign) CGFloat cornerRadius;
+// 20.未勾选隐私协议提示框 透明度
+@property (nonatomic, assign) CGFloat appPrivacyAlpah;
+// 20.未勾选隐私协议提示框 字体颜色
+@property (nonatomic, strong) UIColor *appPrivacyTextColor;
+// 21.未勾选隐私协议提示框 字体大小
+@property (nonatomic, assign) CGFloat appPrivacyFontSize;
+// 22.未勾选隐私协议提示框 背景颜色
+@property (nonatomic, assign) UIColor *appPrivacyBackgroundColor;
+// 22.未勾选隐私协议提示框 等待时间
+@property (nonatomic, assign) CGFloat appPrivacyWaitTime;
 
 #pragma mark 窗口模式
 
