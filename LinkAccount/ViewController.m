@@ -73,7 +73,6 @@
 //    _model.authPageBackgroundImage = [self createImageWithColor:[UIColor groupTableViewBackgroundColor]];
     //标题
     _model.navText = [[NSAttributedString alloc]initWithString:@"一键登录" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    
     _model.navCustom = YES;
     //状态栏颜色
     _model.barStyle = UIBarStyleBlackOpaque;
@@ -84,7 +83,7 @@
     //隐私协议距离屏幕底部位置
 //    _model.privacyOffsetY = 20;
     //隐私协议标题颜色，默认颜色和高亮颜色
-//    _model.privacyTitleColor = [UIColor redColor];
+    _model.privacyTitleColor = [UIColor redColor];
     //隐私协议颜色，默认颜色和高亮颜色
 //    _model.appPrivacyColor = @[[UIColor blueColor],[UIColor redColor]];
     //是否隐藏切换按钮
@@ -99,10 +98,8 @@
 //    _model.privacyFontSize = 13;
     //不需要隐私协议复选框登录即表示同意服务协议
 //    _model.noChecked = YES;
-    
-    
+
 #pragma mark 自定义View（添加其它方式登录）
-    
        [_model setAuthViewBlock:^(UIView * _Nonnull customView, CGRect logoFrame, CGRect numberFrame, CGRect sloganFrame, CGRect loginBtnFrame, CGRect privacyFrame ,CGRect swithAccFrame) {
 
              UIView * view = [[UIView alloc]init];
