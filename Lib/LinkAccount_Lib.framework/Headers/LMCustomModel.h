@@ -126,50 +126,53 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) float checkedImgSize;
 // 4.不需要确认复选框
 @property (nonatomic, assign) float noChecked;
-
+// 5.复选框x坐标距离左边框距离
+@property (nonatomic, assign) float checkedImgOriginX;
+// 6.复选框y坐标偏移量
+@property (nonatomic, assign) float checkedImgOriginY;
 /**
  隐私协议数组u顺序如下
  @[@"xxxx隐私协议",@"https://www.xxx.com"]
  */
-// 5.用户自定义协议1
+// 7.用户自定义协议1
 @property (nonatomic,   copy) NSArray *appPrivacyOne;
-// 6.用户自定义协议2
+// 8.用户自定义协议2
 @property (nonatomic,   copy) NSArray *appPrivacyTwo;
-// 7.复选框默认勾选状态
+// 9.复选框默认勾选状态
 @property (nonatomic, assign) BOOL privacyState;
-// 8.隐私协议详情页标题颜色
+// 10.隐私协议详情页标题颜色
 @property (nonatomic, strong) UIColor *privacyTitleColor;
-// 9.隐私条款Y偏移量(注:此属性为与屏幕底部的距离)
+// 11.隐私条款Y偏移量(注:此属性为与屏幕底部的距离)
 @property (nonatomic, assign) CGFloat privacyOffsetY;
-// 10.隐私协议颜色，@[默认字体颜色，协议颜色]
+// 12.隐私协议颜色，@[默认字体颜色，协议颜色]
 @property (nonatomic, strong) NSArray *appPrivacyColor;
-// 11.隐私协议对齐状态
+// 13.隐私协议对齐状态
 @property (nonatomic, assign) NSTextAlignment privacyTextAlignment;
-// 12.隐私协距离屏幕边框位置
+// 14.隐私协距离屏幕边框位置
 @property (nonatomic, assign) float privacyMargin;
-// 13.隐私协议高度
+// 15.隐私协议高度
 @property (nonatomic, assign) float privacyHeight;
-// 14.隐私协议字体大小
+// 16.隐私协议字体大小
 @property (nonatomic, assign) float privacyFontSize;
-// 15.自定义客户隐私协议点击方法
+// 17.自定义客户隐私协议点击方法
 @property (nonatomic,   copy) void(^privateClickInfo)(NSString *privacyTitle, NSURL *url);
-// 16.用户未同意隐私协议提示
+// 18.用户未同意隐私协议提示
 @property (nonatomic,   copy) NSString *appPrivacyWarningStr;
-// 17.用户未同意隐私协议提示Y偏移量(注:此属性为与屏幕顶部的距离)
+// 19.用户未同意隐私协议提示Y偏移量(注:此属性为与屏幕顶部的距离)
 @property (nonatomic, assign) CGFloat appPrivacyWarningStrOffsetY;
-// 18.提示框距离边距文字距离
+// 20.提示框距离边距文字距离
 @property (nonatomic, assign) CGFloat margin;
-// 19.未勾选隐私协议提示框 圆角
+// 21.未勾选隐私协议提示框 圆角
 @property (nonatomic, assign) CGFloat cornerRadius;
-// 20.未勾选隐私协议提示框 透明度
+// 22.未勾选隐私协议提示框 透明度
 @property (nonatomic, assign) CGFloat appPrivacyAlpah;
-// 20.未勾选隐私协议提示框 字体颜色
+// 23.未勾选隐私协议提示框 字体颜色
 @property (nonatomic, strong) UIColor *appPrivacyTextColor;
-// 21.未勾选隐私协议提示框 字体大小
+// 24.未勾选隐私协议提示框 字体大小
 @property (nonatomic, assign) CGFloat appPrivacyFontSize;
-// 22.未勾选隐私协议提示框 背景颜色
+// 25.未勾选隐私协议提示框 背景颜色
 @property (nonatomic, assign) UIColor *appPrivacyBackgroundColor;
-// 22.未勾选隐私协议提示框 等待时间
+// 26.未勾选隐私协议提示框 等待时间
 @property (nonatomic, assign) CGFloat appPrivacyWaitTime;
 
 #pragma mark 窗口模式

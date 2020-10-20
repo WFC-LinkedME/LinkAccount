@@ -98,6 +98,10 @@
 //    _model.privacyFontSize = 13;
     //不需要隐私协议复选框登录即表示同意服务协议
 //    _model.noChecked = YES;
+    _model.checkedImgOriginY = 2;
+    _model.checkedImgOriginX = 14;
+    //开启后隐藏确认复选框，默认登录即同意使用本机号码
+//    _model.noChecked = YES;
 
 #pragma mark 自定义View（添加其它方式登录）
        [_model setAuthViewBlock:^(UIView * _Nonnull customView, CGRect logoFrame, CGRect numberFrame, CGRect sloganFrame, CGRect loginBtnFrame, CGRect privacyFrame ,CGRect swithAccFrame) {
