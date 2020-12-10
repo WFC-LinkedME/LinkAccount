@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name                  = "LinkedME_LinkAccount"
-s.version              = '2.2.2'
+s.version              = '2.2.3'
 s.summary               = "LinkedME LinkAccount"
 s.description           = <<-DESC
 LinkedME Deeplink for iOS.

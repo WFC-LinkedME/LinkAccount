@@ -325,7 +325,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UEVC2E3PR8;
+				DEVELOPMENT_TEAM = 5G47LWPS43;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -345,7 +345,7 @@
 					"$(PROJECT_DIR)/LinkAccount/Debug-iphoneos",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.microquation.LinkedME;
+				PRODUCT_BUNDLE_IDENTIFIER = com.microquation.LinkAccount;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -355,7 +355,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UEVC2E3PR8;
+				DEVELOPMENT_TEAM = 5G47LWPS43;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -375,7 +375,7 @@
 					"$(PROJECT_DIR)/LinkAccount/Debug-iphoneos",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.microquation.LinkedME;
+				PRODUCT_BUNDLE_IDENTIFIER = com.microquation.LinkAccount;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

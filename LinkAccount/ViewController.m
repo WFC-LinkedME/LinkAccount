@@ -45,7 +45,7 @@
 }
 
 - (IBAction)showLogin:(id)sender {
-    
+        
 #pragma mark 自定义授权页面
     
     __weak typeof(self) weakSelf = self;
