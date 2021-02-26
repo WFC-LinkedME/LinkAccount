@@ -94,12 +94,12 @@
 //    _model.authWindowCornerRadius = 20;
     //默认勾选用户隐私协议
 //    _model.privacyState = YES;
-    _model.margin = 20;
+//    _model.margin = 20;
 //    _model.privacyFontSize = 13;
     //不需要隐私协议复选框登录即表示同意服务协议
 //    _model.noChecked = YES;
-    _model.checkedImgOriginY = 2;
-    _model.checkedImgOriginX = 14;
+//    _model.checkedImgOriginY = 2;
+//    _model.checkedImgOriginX = 14;
     //开启后隐藏确认复选框，默认登录即同意使用本机号码
 //    _model.noChecked = YES;
 
@@ -153,6 +153,7 @@
 //          [weakSelf addLog:@"用户选择使用其他方式登录"];
 //      }];
     
+    /*
     [[LMAuthSDKManager sharedSDKManager] getLoginTokenWithController:self model:_model timeout:888 complete:^(NSDictionary * _Nonnull resultDic) {
 
         [weakSelf addLog:[self convertToJsonData:resultDic]];
@@ -172,6 +173,27 @@
         NSLog(@"点击了登录按钮");
         
     }otherLogin:^{
+
+        [weakSelf addLog:@"用户选择使用其他方式登录"];
+
+    }];
+     */
+    [[LMAuthSDKManager sharedSDKManager] getLoginTokenWithController:self model:_model timeout:888 complete:^(NSDictionary * _Nonnull resultDic) {
+
+        [weakSelf addLog:[self convertToJsonData:resultDic]];
+
+        //关闭授权登录页
+        [[LMAuthSDKManager sharedSDKManager] closeAuthView];
+
+        if ([resultDic[@"resultCode"] isEqualToString:SDKStatusCodeSuccess]) {
+
+            NSLog(@"登陆成功");
+
+        }else{
+            NSLog(@"%@",resultDic);
+        }
+        
+    } otherLogin:^{
 
         [weakSelf addLog:@"用户选择使用其他方式登录"];
 
