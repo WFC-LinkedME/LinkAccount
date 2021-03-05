@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getAccessCodeWithcomplete:(void (^_Nullable)(NSDictionary * _Nonnull resultDic))complete;
 
 /**
- getLoginTokenWithController
+ getLoginTokenWithController ⚠️Block内请使用`weakSelf`防止循环引用⚠️
  调用此接口之前需要先调用getMobileAuthWithTimeout接口
 
  @param vc 当前vc容器，用于一键登录授权页面切换
@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param timeout 接口超时时间，单位s，默认3.0s，值为0.0时采用默认超时时间
  @param complete 字典形式
  */
-- (void)getLoginTokenWithController:(UIViewController *_Nonnull)vc model:(LMCustomModel *_Nullable)model timeout:(NSTimeInterval )timeout complete:(void (^_Nullable)(NSDictionary * _Nonnull resultDic))complete otherLogin:(void(^)(void))otherBlock;
+- (void)getLoginTokenWithController:(UIViewController *_Nonnull)vc model:(LMCustomModel *_Nullable)model timeout:(NSTimeInterval )timeout complete:(void (^_Nullable)(NSDictionary * _Nonnull resultDic))complete clickLoginBtn:(void(^)(UIViewController *loginVc))clickLogin otherLogin:(void(^)(UIViewController *loginVc))otherBlock;
 
 
 - (void)getAccessTokensWithController:(UIViewController *_Nonnull)vc complete:(void (^_Nullable)(NSDictionary * _Nonnull resultDic))complete;
@@ -80,6 +80,11 @@ NS_ASSUME_NONNULL_BEGIN
  关闭授权页面
  */
 - (void)closeAuthView;
+
+/**
+ 获取隐私协议复选框是否选中
+ */
+@property (nonatomic, assign, getter=isPrivacyChecked) BOOL privacyChecked;
 
 @end
 
