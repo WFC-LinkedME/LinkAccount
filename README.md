@@ -1,6 +1,6 @@
 # LinkAccount iOS对接文档
 
-当前版本： 2.2.4
+当前版本： 2.2.5
 
 * 用户协议默认不勾选，可通过 `LMCustomModel `的 `privacyState`属性设置
 * 去掉用户未勾选隐私协议的提示，可通过`[LMAuthSDKManager sharedManager].isPrivacyChecked`  获取选中状态自行进行处理。（未勾选隐私协议点击登录按钮不会执行登录操作）
