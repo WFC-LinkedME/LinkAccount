@@ -10,7 +10,5 @@
 
 @interface ViewController : UIViewController
 
-@property (strong, nonatomic) UITextView *textView;
-
 @end
 

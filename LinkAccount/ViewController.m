@@ -13,6 +13,7 @@
 
 @interface ViewController()
 
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) LMCustomModel *model;
 @property (copy, nonatomic) NSMutableString *logStr;
 @property (copy,nonatomic) NSString *token;
@@ -25,16 +26,14 @@
     [super viewDidLoad];
 
     _logStr = [[NSMutableString alloc] init];
-    self.textView = [[UITextView alloc] initWithFrame:CGRectMake(20, 275, self.view.bounds.size.width-40, self.view.bounds.size.height - 350)];
     self.textView.editable = NO;
-    [self.view addSubview:self.textView];
 }
 
 // 预取号,登陆前60s调用此方法
 - (IBAction)getphoneNumber:(id)sender {
     __weak typeof(self) weakSelf = self;
     [self addLog:@"取号中....（请勿重复点击）"];
-    [LMAuthSDKManager getMobileAuthWithTimeout:999 complete:^(NSDictionary * _Nonnull resultDic) {
+    [LMAuthSDKManager getMobileAuthWithTimeout:10 complete:^(NSDictionary * _Nonnull resultDic) {
         [weakSelf addLog:[self convertToJsonData:resultDic]];
     }];
 }
@@ -121,12 +120,12 @@
     
 #pragma mark 一键登陆
     
-    [[LMAuthSDKManager sharedSDKManager] getLoginTokenWithController:self model:_model timeout:888 complete:^(NSDictionary * _Nonnull resultDic) {
+    [[LMAuthSDKManager sharedSDKManager] getLoginTokenWithController:self model:_model timeout:10 complete:^(NSDictionary * _Nonnull resultDic) {
         [weakSelf addLog:[weakSelf convertToJsonData:resultDic]];
         //关闭授权登录页
         [[LMAuthSDKManager sharedSDKManager] closeAuthView];
         if ([resultDic[@"resultCode"] isEqualToString:SDKStatusCodeSuccess]) {
-            NSLog(@"登陆成功");
+            NSLog(@"登录成功");
         } else {
             NSLog(@"%@",resultDic);
         }
@@ -141,10 +140,10 @@
     }];
 }
 
-// 获取AccesCode（bundle id需要添加白名单）
-- (IBAction)getAccessCode:(id)sender {
+// 获取AccessToken（bundle id需要添加白名单）
+- (IBAction)getAccessToken:(id)sender {
     __weak typeof(self) weakSelf = self;
-    [[LMAuthSDKManager sharedSDKManager] getAccessTokensWithController:self complete:^(NSDictionary * _Nonnull resultDic) {
+    [[LMAuthSDKManager sharedSDKManager] getAccessTokenWithTimeout:10 controller:self complete:^(NSDictionary * _Nonnull resultDic) {
         [weakSelf addLog:[weakSelf convertToJsonData:resultDic]];
     }];
 }
@@ -152,7 +151,7 @@
 // 获取本机号码校验
 - (IBAction)phoneNumValidation:(id)sender {
     __weak typeof(self) weakSelf = self;
-    [[LMAuthSDKManager sharedSDKManager] getAccessCodeWithcomplete:^(NSDictionary * _Nonnull resultDic) {
+    [[LMAuthSDKManager sharedSDKManager] getAccessCodeWithTimeout:10 complete:^(NSDictionary * _Nonnull resultDic) {
         weakSelf.token = resultDic[@"accessCode"];
         [weakSelf addLog:[weakSelf convertToJsonData:resultDic]];
     }];
