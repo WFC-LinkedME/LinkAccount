@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getLoginTokenWithController:(UIViewController *_Nonnull)vc model:(LMCustomModel *_Nullable)model timeout:(NSTimeInterval )timeout complete:(void (^_Nullable)(NSDictionary * _Nonnull resultDic))complete clickLoginBtn:(void(^)(UIViewController *loginVc))clickLogin otherLogin:(void(^)(UIViewController *loginVc))otherBlock;
 
 /**
- 无界面取号
+ 无界面取号(AccessToken)
  @param timeout 超时时间 传值小于等于0则使用默认超时时间5秒(联通小于5秒默认为5秒, 电信小于3秒默认为3秒)
  @param vc 传当前调用该方法的控制器
  @param complete 字典形式
