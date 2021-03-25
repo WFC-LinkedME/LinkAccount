@@ -1,6 +1,6 @@
 # LinkAccount iOS对接文档
 
-当前版本： 2.2.5
+当前版本： 2.2.6
 
 * 用户协议默认不勾选，可通过 `LMCustomModel `的 `privacyState`属性设置
 * 去掉用户未勾选隐私协议的提示，可通过`[LMAuthSDKManager sharedManager].isPrivacyChecked`  获取选中状态自行进行处理。（未勾选隐私协议点击登录按钮不会执行登录操作）
@@ -234,7 +234,7 @@ OC:
     [super viewDidLoad];
     if (YourAppLoginStatus == NO) {
         //预取号
-         [LMAuthSDKManager getMobileAuthWithTimeout:999 complete:^(NSDictionary * _Nonnull resultDic) {
+         [LMAuthSDKManager getMobileAuthWithTimeout:10 complete:^(NSDictionary * _Nonnull resultDic) {
         //回调结果
     }];
         ...
@@ -261,7 +261,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()        
         //预登陆
         if (YourAppLoginStatus == false) {
-            LMAuthSDKManager.getMobileAuth(withTimeout: 88) { (dict) in
+            LMAuthSDKManager.getMobileAuth(withTimeout: 10) { (dict) in
                 print(dict)
             }
         }
@@ -278,7 +278,7 @@ class ViewController: UIViewController {
 ###3.拉起授权页
 
 ```
-- (void)getLoginTokenWithController:(UIViewController *_Nonnull)vc model:(LMCustomModel *_Nullable)model timeout:(NSTimeInterval )timeout complete:(void (^_Nullable)(NSDictionary * _Nonnull resultDic))complete otherLogin:(void(^)(void))otherBlock;
+- (void)getLoginTokenWithController:(UIViewController *_Nonnull)vc model:(LMCustomModel *_Nullable)model timeout:(NSTimeInterval )timeout complete:(void (^_Nullable)(NSDictionary * _Nonnull resultDic))complete clickLoginBtn:(void(^)(UIViewController *loginVc))clickLogin otherLogin:(void(^)(UIViewController *loginVc))otherBlock;
 ```
 
 `在预取号成功后调用`，预取号失败不可调用。调用拉起授权页方法后将会调起运营商授权页面。该方法会拉起登录界面，`已登录状态请勿调用` 。
@@ -288,7 +288,7 @@ class ViewController: UIViewController {
 | --- | --- | --- |
 | controller | UIViewController | 拉起授权页的vc |
 | model | LMCustomModel | 自定义授权页面 |
-| timeOut | 超时时间 | 超时时间(内部单个请求)，单位s，传大于0有效，传小于等于0使用默认，默认10s   |
+| timeOut | NSTimeInterval | 超时时间(内部单个请求)，单位秒，传小于等于0的值时默认为5 |
 | complete | Block | 授权完成回调 |
 
 使用场景
@@ -310,6 +310,7 @@ class ViewController: UIViewController {
 ...
 
 - (IBAction)authPageLogin:(id)sender {
+		__weak typeof(self) weakSelf = self;
     //自定义Model
     LMCustomModel *model = [LMCustomModel new];
     //LOGO
@@ -328,16 +329,30 @@ class ViewController: UIViewController {
     model.logBtnImgs = [NSArray arrayWithObjects:[UIImage imageNamed:@"loginBtn_Nor"],[UIImage imageNamed:@"loginBtn_Dis"] ,[UIImage imageNamed:@"loginBtn_Pre"],nil];
     //返回按钮
     model.navReturnImg = [UIImage imageNamed:@"goback_nor"];
-    //一键登陆
-    [[LMAuthSDKManager sharedSDKManager] getLoginTokenWithController:self model:model timeout:888 complete:^(NSDictionary * _Nonnull resultDic) {
+    //一键登录
+    [[LMAuthSDKManager sharedSDKManager] getLoginTokenWithController:self model:_model timeout:0 complete:^(NSDictionary * _Nonnull resultDic) {        
+        //关闭授权登录页
+        [[LMAuthSDKManager sharedSDKManager] closeAuthView];
         if ([resultDic[@"resultCode"] isEqualToString:SDKStatusCodeSuccess]) {
-            NSLog(@"登陆成功");
-            
-            [[LMAuthSDKManager sharedSDKManager] closeAuthView];
-        }else{
+            NSLog(@"登录成功");
+            NSLog(@"%@",resultDic);
+        } else {
             NSLog(@"%@",resultDic);
         }
-    } otherLogin:^{
+    } clickLoginBtn:^(UIViewController * _Nonnull loginVc) {
+        NSLog(@"用户点击了登录按钮!!");
+        BOOL isPrivacyChecked = [LMAuthSDKManager sharedSDKManager].isPrivacyChecked;
+        if (!isPrivacyChecked) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"请先同意隐私协议" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:cancel];
+            [loginVc presentViewController:alert animated:YES completion:nil];
+        }
+    } otherLogin:^(UIViewController * _Nonnull loginVc) {
+//        [loginVc dismissViewControllerAnimated:YES completion:nil];
+        UIViewController *phoneLoginVc = [[UIViewController alloc] init];
+        phoneLoginVc.view.backgroundColor = [UIColor whiteColor];
+        [loginVc.navigationController pushViewController:phoneLoginVc animated:YES];
         NSLog(@"用户选择使用其他方式登录");
     }];
 }
@@ -364,7 +379,7 @@ class ViewController: UIViewController {
         model.uncheckedImg = UIImage.init(named: "checkBox_unSelected")!
         //隐私条款复选框选中状态
         model.checkedImg = UIImage.init(named: "checkBox_selected")!
-        //登陆按钮
+        //登陆登录
         model.logBtnImgs = [UIImage.init(named: "loginBtn_Nor")!,
                             UIImage.init(named: "loginBtn_Dis")!,
                             UIImage.init(named: "loginBtn_Pre")!]
@@ -420,7 +435,7 @@ class ViewController: UIViewController {
 
 ### 4.本机号码验证
 ```
-- (void)getAccessCodeWithcomplete:(void (^_Nullable)(NSDictionary * _Nonnull resultDic))complete;
+- (void)getAccessCodeWithTimeout:(NSTimeInterval)timeout complete:(void (^_Nullable)(NSDictionary * _Nonnull resultDic))complete;
 ```
 
 调用后返回accessCode用于本机号码验证。该方法不会拉起登录界面，用于校验用户输入的手机号码是否为本机号码。
@@ -429,13 +444,14 @@ class ViewController: UIViewController {
 | 字段 | 类型 | 说明 |
 | --- | --- | --- |
 | complete | Block | 回调  |
+| timeout | NSTimeInterval | 超时时间 |
 
 **OC**
 
 ```
 ...
 - (IBAction)phoneNumValidation:(id)sender {
-    [[LMAuthSDKManager sharedSDKManager]getAccessCodeWithcomplete:^(NSDictionary * _Nonnull resultDic) {
+    [[LMAuthSDKManager sharedSDKManager]getAccessCodeWithTimeout:10 complete:^(NSDictionary * _Nonnull resultDic) {
         NSLog(@"%@",resultDic);
     }];
 }
@@ -447,7 +463,7 @@ class ViewController: UIViewController {
 ```
 ...
 @IBAction func authLogin(_ sender: Any) {
-    LMAuthSDKManager.getMobileAuth(withTimeout: 666) { ([AnyHashable : Any]) in
+    LMAuthSDKManager.getAccessCode(withTimeout: 10) { ([AnyHashable : Any]) in
         
     }
 }
