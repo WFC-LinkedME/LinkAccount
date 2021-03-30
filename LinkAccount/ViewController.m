@@ -14,9 +14,9 @@
 @interface ViewController()
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
-@property (strong, nonatomic) LMCustomModel *model;
 @property (copy, nonatomic) NSMutableString *logStr;
 @property (copy,nonatomic) NSString *token;
+@property (strong, nonatomic) LMCustomModel *model;
 
 @end
 
@@ -27,17 +27,20 @@
 
     _logStr = [[NSMutableString alloc] init];
     self.textView.editable = NO;
+    
+    [self addLog:[NSString stringWithFormat:@"当前SDK版本: %@", [LMAuthSDKManager getVersion]]];
 }
 
 // 预取号,登陆前60s调用此方法
 - (IBAction)getphoneNumber:(id)sender {
     __weak typeof(self) weakSelf = self;
-    [self addLog:@"取号中....（请勿重复点击）"];
+    [self addLog:@"取号中...（请勿重复点击）"];
     [LMAuthSDKManager getMobileAuthWithTimeout:10 complete:^(NSDictionary * _Nonnull resultDic) {
         [weakSelf addLog:[self convertToJsonData:resultDic]];
     }];
 }
 
+// 调起登录页面
 - (IBAction)showLogin:(id)sender {
     
 #pragma mark 自定义授权页面
@@ -61,6 +64,8 @@
     //    _model.checkedImg   = [UIImage imageNamed:@"checkBox_selected"];
     //登陆按钮
     //    _model.logBtnImgs   = [NSArray arrayWithObjects:[UIImage imageNamed:@"loginBtn_Nor"],[UIImage imageNamed:@"loginBtn_Dis"] ,[UIImage imageNamed:@"loginBtn_Pre"],nil];
+    // 登录按钮Y轴偏移量
+    _model.logBtnOffsetY = 5;
     //返回按钮
     _model.navReturnImg = [UIImage imageNamed:@"goback_nor"];
     //背景图片
@@ -121,14 +126,18 @@
 #pragma mark 一键登陆
     
     [[LMAuthSDKManager sharedSDKManager] getLoginTokenWithController:self model:_model timeout:10 complete:^(NSDictionary * _Nonnull resultDic) {
-        [weakSelf addLog:[weakSelf convertToJsonData:resultDic]];
         //关闭授权登录页
         [[LMAuthSDKManager sharedSDKManager] closeAuthView];
+        
         if ([resultDic[@"resultCode"] isEqualToString:SDKStatusCodeSuccess]) {
-            NSLog(@"登录成功");
+            [weakSelf addLog:@"🤪登录成功🤪"];
+            NSLog(@"%@",resultDic);
         } else {
+            [weakSelf addLog:@"😫登录失败😫"];
             NSLog(@"%@",resultDic);
         }
+        [weakSelf addLog:[weakSelf convertToJsonData:resultDic]];
+        
     } clickLoginBtn:^(UIViewController * _Nonnull loginVc) {
         NSLog(@"%@",@"用户点击了登录按钮");
         BOOL isPrivacyChecked = [LMAuthSDKManager sharedSDKManager].isPrivacyChecked;
@@ -136,11 +145,11 @@
             [weakSelf showAlertOnVc:loginVc title:@"请先同意协议"];
         }
     } otherLogin:^(UIViewController * _Nonnull loginVc) {
-        [weakSelf addLog:@"用户选择使用其他方式登录"];
+        [weakSelf addLog:@"😄用户选择使用其他方式登录"];
     }];
 }
 
-// 获取AccessToken（bundle id需要添加白名单）
+// 直接获取AccessToken（bundle id需要添加白名单）
 - (IBAction)getAccessToken:(id)sender {
     __weak typeof(self) weakSelf = self;
     [[LMAuthSDKManager sharedSDKManager] getAccessTokenWithTimeout:10 controller:self complete:^(NSDictionary * _Nonnull resultDic) {
@@ -157,13 +166,30 @@
     }];
 }
 
-// 自定义view点击方法(QQ WeChat WeiBo)
+// 自定义View点击方法(QQ WeChat WeiBo)
 - (void)customBtn:(UIButton *)btn {
     NSString *str = [NSString stringWithFormat:@"第%ld个按钮被点击了",(long)btn.tag];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
         [self showAlertOnVc:vc title:str];
     });
+    
+    NSInteger tag = btn.tag;
+    switch (tag) {
+        case 1:
+            [self addLog:@"🙂自定义登录方式: 微信"];
+            break;
+        case 2:
+            [self addLog:@"🙂自定义登录方式: QQ"];
+            break;
+        case 3:
+            [self addLog:@"🙂自定义登录方式: 微博"];
+            break;
+        default:
+            break;
+    }
+    
+    // 关闭登录页面(根据业务需要决定是否关闭)
     [[LMAuthSDKManager sharedSDKManager] closeAuthView];
 }
 
@@ -176,7 +202,7 @@
 }
 
 - (void)addLog:(NSString *)str {
-    [self.logStr appendFormat:@"%@:%@\n\n",[self getCurrentTimes],str];
+    [self.logStr appendFormat:@"%@:%@\n\n", [self getCurrentTimes], str];
     self.textView.text = self.logStr;
     [self.textView scrollRangeToVisible:NSMakeRange(self.textView.text.length, 1)];
 }
@@ -193,9 +219,12 @@
     }
     
     NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
-    NSRange range2 = {0,mutStr.length};
     //去掉字符串中的换行符
+    NSRange range2 = {0, mutStr.length};
     [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
+    //去掉字符串中的空格
+    NSRange range3 = {0, mutStr.length};
+    [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range3];
     return mutStr;
 }
 
@@ -205,8 +234,7 @@
     return tempDic;
 }
 
-// 获取当前的时间
-- (NSString*)getCurrentTimes {
+- (NSString *)getCurrentTimes {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
     NSDate *datenow = [NSDate date];
@@ -214,7 +242,7 @@
     return currentTimeString;
 }
 
-- (UIImage *)createImageWithColor:(UIColor*)color {
+- (UIImage *)createImageWithColor:(UIColor *)color {
     CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
