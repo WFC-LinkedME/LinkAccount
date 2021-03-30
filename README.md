@@ -1,10 +1,24 @@
 # LinkAccount iOS对接文档
 
+当前版本： 2.2.8 （请尽快更新到此版本）
+
+> 修复
+
+* 完善接口超时时间的设置
+* 修复中国移动返回 `operatorType` 不正确的问题
+* 修复中国移动取号失败的情况下UI被遮挡无法交互的问题
+
+
+
 当前版本： 2.2.7
+
+> 新增
 
 * 用户协议默认不勾选，可通过 `LMCustomModel `的 `privacyState`属性设置
 * 去掉用户未勾选隐私协议的提示，可通过`[LMAuthSDKManager sharedManager].isPrivacyChecked`  获取选中状态自行进行处理。（未勾选隐私协议点击登录按钮不会执行登录操作）
 * 隐私协议复选框可以隐藏，隐藏后默认同意隐私协议（ `noChecked = YES` 隐藏 ）
+
+
 
 当前版本：2.1.8
 
