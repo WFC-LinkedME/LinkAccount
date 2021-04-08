@@ -1,8 +1,14 @@
 # LinkAccount iOS对接文档
 
-当前版本： 2.2.8 （请尽快更新到此版本）
+当前版本：2.2.9
 
-> 修复
+* 更新电信运营商SDK
+* 号码校验接口返回结果中增加 `operatorType` 字段，用于标识运营商类型
+* 电信号码登录成功返回结果中增加 `accessToken` 字段
+
+
+
+当前版本： 2.2.8
 
 * 完善接口超时时间的设置
 * 修复中国移动返回 `operatorType` 不正确的问题
@@ -12,8 +18,6 @@
 
 当前版本： 2.2.7
 
-> 新增
-
 * 用户协议默认不勾选，可通过 `LMCustomModel `的 `privacyState`属性设置
 * 去掉用户未勾选隐私协议的提示，可通过`[LMAuthSDKManager sharedManager].isPrivacyChecked`  获取选中状态自行进行处理。（未勾选隐私协议点击登录按钮不会执行登录操作）
 * 隐私协议复选框可以隐藏，隐藏后默认同意隐私协议（ `noChecked = YES` 隐藏 ）
@@ -22,8 +26,6 @@
 
 当前版本：2.1.8
 
-> 新增：
-
 * 修改用户未勾选隐私协议提示样式
 * 隐私协议复选框大小可自己调整
 * 用户隐私协议支持打开自定义页面
@@ -31,43 +33,46 @@
 
 
 * 修复初始化可能失败的潜在问题
-*当前版本：2.1.5
-> 修复：
+
+
+
+当前版本：2.1.5
 
 * 修复初始化可能失败的潜在问题
 
+
+
 当前版本：2.1.1
-> 修复：
 
 * 未安装SIM卡时候错误提示优化
+
+
 
 当前版本：2.0.1
 
 发版时间：2019年10月24日
 
-> 新增：
-
 * 支持弹窗模式打开授权登录页
 * 提供无界面版本（需添加白名单）
 
-最近更新：2.0.0
 
-> 新增：
+
+最近更新：2.0.0
 
 * 支持授权页面添加自定义控件
 * 授权页面控件Frame设置
 * 隐私协议自定义
 * 隐私协议页面title，设置为用户自定义title
 
-> 优化：
-
 * 修复弱网环境下或双卡手机切换网络时，预取号回调失败存在不返回的情况
+
+
 
 文档最后更新时间：2019年10月24日
 
 版本更新：所有版本通用方式——替换SDK静态库， 删除旧版本SDK所有相关的`.framework``.bundle`文件，清除缓存，再导入新版SDK中的所有`.framework``.bundle`文件（.bundle文件注意保留开发者自定义资源），详细说明请移步至「升级指南」
 
-## 一.准备工作
+## 一. 准备工作
 
 
 ### 前置条件
@@ -76,8 +81,8 @@
 - LinkAccount SDK支持Xcode 9.4.1，iOS8.0+及以上版本。
 - LinkAccount SDK支持中国移动、联通、电信4G的取号能力。
 - LinkAccount SDK支持网络环境为
- a.纯数据网络
- b.数据网络与wifi网络双开
+ a. 纯数据网络
+b. 数据网络与WIFI网络双开
 
 - 对于双卡手机，取当前流量卡号
 
@@ -98,14 +103,16 @@ LinkAccount SDK目前仅提供两种集成方式，手动集成，cocoaPods集�
 pod 'LinkedME_LinkAccount'
 
 #集成指定版本SDK:
-pod 'LinkedME_LinkAccount', '1.0.0'
-
-保存并执行pod install,然后用后缀为.xcworkspace的文件打开工程。
+pod 'LinkedME_LinkAccount', '2.2.9'
 ```
+
+##### 保存并执行pod install，然后用后缀为.xcworkspace的文件打开工程。
+
+
 
 注意:
 
-命令行下执行pod search LinkedME_LinkAccount,如显版本不是最新的，则先执行pod repo update操作更新本地repo的内容
+命令行下执行pod search LinkedME_LinkAccount，如显示版本不是最新的，则需先执行pod repo update，更新本地repo的内容。
 
 关于CocoaPods的更多信息请查看 [CocoaPods官方网站](https://cocoapods.org/)。
 
@@ -133,16 +140,14 @@ pod 'LinkedME_LinkAccount', '1.0.0'
 
 
 
-### 二.SDK使用说明
+### 二. SDK使用说明
 
+###  1.初始化
 
-1.初始化
-
-
-方法原型
+**方法原型**
 
 ```
-#初始化方法
+// 初始化方法
 +(void)initWithKey:(NSString *)key  complete:(void (^_Nullable)(NSDictionary * _Nonnull resultDic))complete;
 ```
 
@@ -153,11 +158,9 @@ pod 'LinkedME_LinkAccount', '1.0.0'
 | key | 是 | NSString   | LinkAccount Key |
 | complete | 是 | Block | 初始化回调block，可以在此回调block中接收初始化情况，也可以不关心初始化结果 |
 
-
 **接口作用**
 
-初始化SDK :传入用户的appID、获取本机运营商,读取缓存,获取运营商配置,初始化SDK
-
+初始化SDK：传入用户的appID、获取本机运营商，读取缓存，获取运营商配置，初始化SDK。
 
 **使用场景**
 
@@ -166,66 +169,62 @@ pod 'LinkedME_LinkAccount', '1.0.0'
 - 只需调用一次，多次调用不会多次初始化，与一次调用效果一致
 
 **OC**
-1.导入LinkAccount SDK头文件 #import`<LinkAccount_Lib/LinkAccount.h>`
-2.在AppDelegate中的 didFinishLaunchingWithOptions方法中添加初始化代码
+1. 导入LinkAccount SDK头文件  `#import <LinkAccount_Lib/LinkAccount.h>` 
+2. 在AppDelegate中的 `didFinishLaunchingWithOptions` 方法中添加初始化代码
 
 ```
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     ...
     //初始化SDK
-     [LMAuthSDKManager initWithKey:@"your Key" complete:^(NSDictionary * _Nonnull resultDic) {
+    [LMAuthSDKManager initWithKey:@"your Key" complete:^(NSDictionary * _Nonnull resultDic) {
         NSLog(@"%@",resultDic);
     }];
+    NSLog(@"版本号：%@", [LMAuthSDKManager getVersion]);
     ...
 }
 ```
 
 **Swift**
 创建混编桥接头文件并导入LinkAccount SDK头文件 
-#import `<LinkAccount_Lib/LinkAccount.h>`
+`#import <LinkAccount_Lib/LinkAccount.h>` 
 
-在AppDelegate中的 didFinishLaunchingWithOptions方法中添加初始化代码
+在AppDelegate中的 `didFinishLaunchingWithOptions` 方法中添加初始化代码
 
 ```
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 ...        
       LMAuthSDKManager.initWithKey("your appKey") { ([AnyHashable : Any]) in
             
-        }
+      }
 ...
         return true
     }
 ```
 
+### 2.预取号
 
-###2.预取号
-
-
-方法原型
+**方法原型**
 
 ```
- * 预取号（获取临时凭证）
- * 建议在判断当前用户属于未登录状态时使用，已登录状态用户请不要调用该方法
-
-+(void)getMobileAuthWithTimeout:(NSTimeInterval)timeout  complete:(void (^_Nullable)(NSDictionary * _Nonnull resultDic))complete;
-
+// 预取号（获取临时凭证）
+// 建议在判断当前用户属于未登录状态时使用，已登录状态用户请不要调用该方法
++ (void)getMobileAuthWithTimeout:(NSTimeInterval)timeout complete:(void (^_Nullable)(NSDictionary * _Nonnull resultDic))complete;
 ```
 
 
 | 参数 | 类型 | 说明 |
 | --- | --- | --- |
-| timeout | NSTimeInterval | 超时时间(内部单个请求)，单位s，传大于0有效，传小于等于0使用默认，默认10s   |
-|complete|Block|预取号结果回调
+| timeout | NSTimeInterval | 超时时间(内部单个请求)，单位s，传大于0有效，传小于等于0使用默认，默认8s   |
+| complete | Block | 预取号结果回调 |
 
 
 **接口作用**
 
-电信、联通、移动预取号 :初始化成功后，如果当前为电信/联通/移动，将调用预取号，可以提前获知当前用户的手机网络环境是否符合一键登录的使用条件，成功后将得到用于一键登录使用的临时凭证，默认的凭证有效期60s(电信)/30min(联通)/60min(移动)。
-
+电信、联通、移动预取号：初始化成功后，如果当前为电信/联通/移动，将调用预取号，可以提前获知当前用户的手机网络环境是否符合一键登录的使用条件，成功后将得到用于一键登录使用的临时凭证，默认的凭证有效期60s(电信)/30min(联通)/60min(移动)。
 
 **使用场景**
 
-建议在执行一键登录的方法前，提前一段时间调用此方法，比如调一键登录的vc的viewdidload中，或者rootVC的viewdidload中，或者app启动后，此调用将有助于提高拉起授权页的速度和成功率
+建议在执行一键登录的方法前，提前一段时间调用此方法，比如调一键登录的vc的viewdidload中，或者rootVC的viewdidload中，或者app启动后，此调用将有助于提高拉起授权页的速度和成功率。
 不建议调用后立即调用拉起授权页方法（此方法是异步）
 此方法需要1~2s的时间取得临时凭证，因此也不建议和拉起授权页方法一起串行调用
 不建议频繁的多次调用和在拉起授权页后调用
@@ -234,46 +233,43 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 > 请求示例代码
 
-OC:
+**OC**
 
 
 ```
 
 #import <LinkAccount_Lib/LinkAccount.h>
 
-//需要拉起授权页的ViewController页面
+// 需要拉起授权页的ViewController页面
 
 ...
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (YourAppLoginStatus == NO) {
-        //预取号
+        // 预取号
          [LMAuthSDKManager getMobileAuthWithTimeout:10 complete:^(NSDictionary * _Nonnull resultDic) {
-        //回调结果
+        // 回调结果
     }];
         ...
     }
 }
 ...
-//拉起授权页
+// 拉起授权页
 - (void)authPageLogin{
     ...
 }
 
 ```
 
-
 **Swift**
 
 ```
 class ViewController: UIViewController {
 
-    //需要拉起授权页的ViewController页面
-
+    // 需要拉起授权页的ViewController页面
     override func viewDidLoad() {
-        
         super.viewDidLoad()        
-        //预登陆
+        // 预登录
         if (YourAppLoginStatus == false) {
             LMAuthSDKManager.getMobileAuth(withTimeout: 10) { (dict) in
                 print(dict)
@@ -289,23 +285,23 @@ class ViewController: UIViewController {
 
 ```
 
-###3.拉起授权页
+### 3.拉起授权页
 
 ```
 - (void)getLoginTokenWithController:(UIViewController *_Nonnull)vc model:(LMCustomModel *_Nullable)model timeout:(NSTimeInterval )timeout complete:(void (^_Nullable)(NSDictionary * _Nonnull resultDic))complete clickLoginBtn:(void(^)(UIViewController *loginVc))clickLogin otherLogin:(void(^)(UIViewController *loginVc))otherBlock;
 ```
 
-`在预取号成功后调用`，预取号失败不可调用。调用拉起授权页方法后将会调起运营商授权页面。该方法会拉起登录界面，`已登录状态请勿调用` 。
+***在预取号成功后调用***，预取号失败不可调用。调用拉起授权页方法后将会调起运营商授权页面。该方法会拉起登录界面，***已登录状态请勿调用*** 。
 
 
 | 参数 | 类型 | 说明 |
 | --- | --- | --- |
 | controller | UIViewController | 拉起授权页的vc |
 | model | LMCustomModel | 自定义授权页面 |
-| timeOut | NSTimeInterval | 超时时间(内部单个请求)，单位秒，传小于等于0的值时默认为5 |
+| timeout | NSTimeInterval | 超时时间(内部单个请求)，单位秒，传小于等于0的值时默认为8s |
 | complete | Block | 授权完成回调 |
 
-使用场景
+**使用场景**
 
 用户进行一键登录操作时，调用一键登录方法，如果初始化成功，SDK将会拉起授权页面，用户授权后，SDK将返回取号 token给到应用客户端。
 可以在多处调用
@@ -314,8 +310,7 @@ class ViewController: UIViewController {
 
 > 请求示例代码
 
-
-导入LinkAccount SDK头文件 #import `<LinkAccount_Lib/LinkAccount.h>`
+导入LinkAccount SDK头文件 ` #import <LinkAccount_Lib/LinkAccount.h>` 
 在需要使用一键登录的地方调用一键登录接口
 
 **OC**
@@ -379,33 +374,33 @@ class ViewController: UIViewController {
 ```****
     //拉起授权页
     @IBAction func authPageLogin(_ sender: Any) {
-        //自定义Model
+        // 自定义Model
         let model = LMCustomModel.init()
-        //logo
+        // LOGO
         model.logoImage = UIImage.init(named: "logo")!
-        //是否隐藏其他方式登陆按钮
+        // 是否隐藏其他方式登录按钮
         model.changeBtnIsHidden = false
-        //自定义隐私条款1
+        // 自定义隐私条款1
         model.privacyOne = ["用户服务条款1","https://www.linkedme.cc"]
-        //自定义隐私条款2
+        // 自定义隐私条款2
         model.privacyTwo = ["用户服务条款2","https://www.linkedme.cc"]
-        //隐私条款复选框非选中状态
+        // 隐私条款复选框非选中状态
         model.uncheckedImg = UIImage.init(named: "checkBox_unSelected")!
-        //隐私条款复选框选中状态
+        // 隐私条款复选框选中状态
         model.checkedImg = UIImage.init(named: "checkBox_selected")!
-        //登陆登录
+        // 登录按钮背景图
         model.logBtnImgs = [UIImage.init(named: "loginBtn_Nor")!,
                             UIImage.init(named: "loginBtn_Dis")!,
                             UIImage.init(named: "loginBtn_Pre")!]
-        //返回按钮
+        // 返回按钮
         model.navReturnImg = UIImage.init(named: "goback_nor")!
         
-            //一键登陆
+            // 一键登录
             LMAuthSDKManager.shared().getLoginToken(with: self, model: model, timeout: 888, complete: { (dict) in
                 //SDKStatusCodeSuccess
                 if let resultCode = dict["resultCode"] as? String{
                     if (resultCode == SDKStatusCodeSuccess){
-                        print("登陆成功")
+                        print("登录成功")
                     }
                 }
             }) {
@@ -414,17 +409,38 @@ class ViewController: UIViewController {
     }
 ```
 
-> 成功回调
+> 成功回调示例
 
 ```
+// 移动
 {
-	{
-	"resultCode": "6666",
-	"telecom": "CU",
-	"accessToken": "nm4434942e5a874835b78952959e9fbb65",
-	"os": "0",
-	"gwAuth" : "8787"
-	}
+  "resultCode":"6666",
+  "operatorType":"CM",
+  "accessToken":"STsid00000015783159423136R9MZRTTB05bIDw0uVGuPZuNYPxkXK3r",
+  "operatorCode":"103000",
+  "os":"0"
+}
+
+// 联通
+{
+  "resultCode":"6666",
+  "operatorType":"CU",
+  "accessToken":"527d507cf00a475883bcc593638b2258",
+  "operatorCode":"0",
+  "os":"0"
+}
+// 电信
+{
+  "result":0,
+  "gwAuth":"7473",
+  "number":"189****0547",
+  "expiredTime":3600,
+  "operatorType":"CT",
+  "msg":"success",
+  "accessCode":"nmb5209acbc83944dbb24738801c806991",
+  "accessToken":"nmb5209acbc83944dbb24738801c806991",
+  "reqId":"42670674cGwhZVqXbWYHdEGazBCoksak",
+  "resultCode":"6666"
 }
 ```
 **参数描述**
@@ -432,10 +448,10 @@ class ViewController: UIViewController {
 | 字段 | 类型 | 说明 |
 | --- | --- | --- |
 | resultCode | NSString | 状态码 |
-| telecom | NSString |  <div>当前数据流量卡的运营商类型</div> <div> CM 移动</div> <div>CT 电信</div> <div>CU 联通</div>|
+| operatorType | NSString | 当前数据流量卡的运营商类型：CM-移动 CT-电信 CU-联通 |
 | accessToken | NSString | token，置换令牌，用来和后台置换手机号。一次有效，有效期3min |
 | gwAuth | NSString | 仅电信运营商返回此字段，配合accessToken置换手机号 |
-| os | NSString | 手机系统 |
+| os | NSString | 手机系统 “0”为iOS |
 
 
 开发者需将此data字典作为参数，以form-data格式完整地发送到开发者后台配置的`查询手机号API`
@@ -484,20 +500,19 @@ class ViewController: UIViewController {
 ...
 ```
 
-
-###5.手动关闭授权页
+### 5.手动关闭授权页
 当开发者设置点击一键登录或者自定义控件不自动销毁授权页时，将需要自行调用此方法主动销毁授权页，建议在置换手机号成功后销毁。如在得到回调后未销毁授权页而，使用拉起授权页方法再次拉起授权页，此页面将无法响应任何按键（除了导航栏的返回按钮）。
 
 > 关闭授权页时机
 
-- a.SDK拉起授权页方法 直接回调失败时
-- b.置换手机号有返回结果时
+- a. SDK拉起授权页方法直接回调失败时
+- b. 置换手机号有返回结果时
 
 ```
-    [[LMAuthSDKManager sharedSDKManager] closeAuthView];
+[[LMAuthSDKManager sharedSDKManager] closeAuthView];
 ```
 
-##三.授权界面修改
+### 三. 授权界面修改
 
 ![](https://pagedoc.lkme.cc/.gitbook/assets/sdk-shou-quan-ye-she-ji-gui-fan.jpg)
 可以调整属性
@@ -573,7 +588,7 @@ class ViewController: UIViewController {
 /// 4.登录按钮文字颜色
 @property (nonatomic, strong) UIColor *loginBtnTextColor;
 /// 5.登录按钮Y偏移量（相对slogon位置）
-@property (nonatomic, assign) CGFloat logBtnOffsetY;
+@property (nonatomic, assign) CGFloat loginBtnOffsetY;
 /// 6.登录按钮的左右边距 注意:按钮呈现的宽必须大于屏幕的一半
 @property (nonatomic, assign) CGFloat loginBtnOriginX;
 /// 7.登录按钮高h 注意：必须大于40
@@ -649,7 +664,7 @@ class ViewController: UIViewController {
 ```
 
 
-### 四.返回码对照
+### 四. 返回码对照
 
 
 | 状态码 |   描述 |
@@ -662,8 +677,8 @@ class ViewController: UIViewController {
 | 2233 | 其他错误   |
 | 3344 | 蜂窝数据未开启或不稳定   |
 
-### 五.已知问题
-1.ATS开关(Http与Https)
+### 五. 已知问题
+1. ATS开关(Http与Https)
 
 目前运营商个别接口为http请求，解决办法如下
 1.开启ATS开关

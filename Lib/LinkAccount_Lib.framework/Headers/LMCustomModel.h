@@ -89,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 4.登录按钮文字颜色
 @property (nonatomic, strong) UIColor *loginBtnTextColor;
 /// 5.登录按钮Y偏移量（相对slogon位置）
-@property (nonatomic, assign) CGFloat logBtnOffsetY;
+@property (nonatomic, assign) CGFloat loginBtnOffsetY;
 /// 6.登录按钮的左右边距 注意:按钮呈现的宽必须大于屏幕的一半
 @property (nonatomic, assign) CGFloat loginBtnOriginX;
 /// 7.登录按钮高h 注意：必须大于40

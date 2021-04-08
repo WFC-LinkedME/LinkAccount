@@ -65,7 +65,7 @@
     //登陆按钮
     //    _model.logBtnImgs   = [NSArray arrayWithObjects:[UIImage imageNamed:@"loginBtn_Nor"],[UIImage imageNamed:@"loginBtn_Dis"] ,[UIImage imageNamed:@"loginBtn_Pre"],nil];
     // 登录按钮Y轴偏移量
-    _model.logBtnOffsetY = 5;
+    _model.loginBtnOffsetY = 5;
     //返回按钮
     _model.navReturnImg = [UIImage imageNamed:@"goback_nor"];
     //背景图片
@@ -111,7 +111,7 @@
         view.frame = CGRectMake(loginBtnFrame.origin.x, swithAccFrame.origin.y + 45, loginBtnFrame.size.width, 30);
         [customView addSubview:view];
         
-        NSArray *btnTitles = @[@"wechat_account",@"qq_account",@"weibo_account"];
+        NSArray *btnTitles = @[@"wechat_account", @"qq_account", @"weibo_account"];
         
         for (int i = 0; i<3; i++) {
             UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake((view.frame.size.width -15) /4 + (view.frame.size.width -15) /3 *i, swithAccFrame.origin.y + 65, 30, 30)];
