@@ -93,6 +93,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign, readonly) NSTimeInterval accessTokenTimeout;
 
+@property (copy ,nonatomic, readonly) NSString *key;
+
 @end
 
 
