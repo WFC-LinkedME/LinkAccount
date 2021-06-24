@@ -2,7 +2,7 @@
 
 
 
-当前版本：2.3.2
+当前版本：2.3.3
 
 * 更新移动SDK
 
@@ -92,7 +92,7 @@
 - LinkAccount SDK支持中国移动、联通、电信4G的取号能力。
 - LinkAccount SDK支持网络环境为
  a. 纯数据网络
-b. 数据网络与WIFI网络双开
+ b. 数据网络与WIFI网络双开
 
 - 对于双卡手机，取当前流量卡号
 
@@ -745,5 +745,4 @@ Info.plist -> App Transport Security Settings -> Allow Arbitrary Loads -> YES
 ```
 =======
 参见：[LinkAccount iOS对接文档](https://pagedoc.lkme.cc/linkaccount/linkaccount-integrated-document/ios-sdk.html)
-
 
