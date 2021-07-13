@@ -2,13 +2,7 @@
 
 
 
-当前版本：2.3.3
-
-* 更新移动SDK
-
-* 注意：如需支持iOS11及以下系统，需要添加依赖库，在项目设置target -> 选项卡Build Phase -> Linked Binary with Libraries添加如下依赖库: Network.framework。
-
-  
+当前最新版本：2.3.5
 
 当前版本：2.2.9
 
