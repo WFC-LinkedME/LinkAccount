@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name                  = "LinkedME_LinkAccount"
-s.version              = '2.3.6'
+s.version              = '2.3.7'
 s.summary               = "LinkedME LinkAccount"
 s.description           = <<-DESC
 LinkedME LinkAccount for iOS.
@@ -24,7 +24,6 @@ s.source                = { :git => "https://github.com/WFC-LinkedME/LinkAccount
 s.vendored_frameworks = '**/**/LinkAccount_Lib.framework'
 s.resources = '**/**/LinkAccount.bundle'
 
-s.framework = 'Network'
 s.libraries = 'c++', 'z.1.2.8'
 
 s.platform              = :ios
