@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)getMobileAuthWithTimeout:(NSTimeInterval)timeout complete:(void (^_Nullable)(NSDictionary * _Nonnull resultDic))complete;
 
-/**
+/** 
  获取SDK预初始化完成情况（成功/失败），用户可以在将要调用一键登录方法处，通过此方法获取SDK预初始化情况，对于预初始化失败的，仍可以直接调一键登录接口，由用户自行决定
  @return status
  */
