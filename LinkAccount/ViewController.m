@@ -54,14 +54,6 @@
     //    _model.swithAccHidden = NO;
     //登录按钮文字
     //    _model.logBtnText = @"一键登录";
-    //自定义隐私条款1
-    _model.appPrivacyOne   = @[@"用户服务条款1",@"https://www.linkedme.cc"];
-    //自定义隐私条款2
-    _model.appPrivacyTwo   = @[@"用户服务条款2",@"https://www.baidu.com"];
-    //隐私条款复选框非选中状态
-    //    _model.uncheckedImg = [UIImage imageNamed:@"checkBox_unSelected"];
-    //隐私条款复选框选中状态
-    //    _model.checkedImg   = [UIImage imageNamed:@"checkBox_selected"];
     //登陆按钮
     //    _model.logBtnImgs   = [NSArray arrayWithObjects:[UIImage imageNamed:@"loginBtn_Nor"],[UIImage imageNamed:@"loginBtn_Dis"] ,[UIImage imageNamed:@"loginBtn_Pre"],nil];
     // 登录按钮Y轴偏移量
@@ -79,30 +71,38 @@
     _model.navColor = [UIColor whiteColor];
     //logo距离屏幕顶部位置
     //    _model.logoOffsetY = 100;
-    // ⚠️隐私协议复选框Y轴偏移 - 默认底部与文字基线对齐, 可以设置该属性让复选框向下移动一点达到与文字居中的效果
-    _model.checkedImgOriginY = 2;
-    //隐私协议距离屏幕底部位置
-    //    _model.privacyOffsetY = 20;
-    //隐私协议标题颜色，默认颜色和高亮颜色
+    //隐私协议标题颜色
     _model.privacyTitleColor = [UIColor redColor];
-    //隐私协议颜色，默认颜色和高亮颜色
-    //    _model.appPrivacyColor = @[[UIColor blueColor],[UIColor redColor]];
+    
     //是否隐藏切换按钮
     //    _model.swithAccHidden = YES;
     //使用弹窗模式
     //    _model.useWindow = YES;
     //弹出窗口圆角
     //    _model.authWindowCornerRadius = 20;
-    //默认勾选用户隐私协议
-    //    _model.privacyState = YES;
-    //    _model.margin = 20;
-    //    _model.privacyFontSize = 13;
+    
     //不需要隐私协议复选框登录即表示同意服务协议
     //    _model.noChecked = YES;
-    //    _model.checkedImgOriginY = 2;
-    //    _model.checkedImgOriginX = 14;
-    //开启后隐藏确认复选框，默认登录即同意使用本机号码
-    //    _model.noChecked = YES;
+    //默认勾选用户隐私协议
+    _model.privacyState = YES;
+    //自定义隐私条款1
+    _model.appPrivacyOne   = @[@"《某某用户服务协议》", @"https://github.com/WFC-LinkedME/LinkAccount"];
+    //自定义隐私条款2
+    _model.appPrivacyTwo   = @[@"《某某金融隐私协议》", @"https://www.baidu.com"];
+    //隐私协议颜色, @[默认文字颜色, 协议颜色]
+    _model.appPrivacyColor = @[[UIColor blackColor], [UIColor purpleColor]];
+    //隐私条款复选框非选中状态
+    _model.uncheckedImg = [UIImage imageNamed:@"未选中"];
+    //隐私条款复选框选中状态
+    _model.checkedImg   = [UIImage imageNamed:@"选中"];
+    _model.checkedImgOriginY = 1.5;
+    _model.checkedImgOriginX = 0;
+    _model.privacyLineSpacing = 3;
+    _model.privacyFirstLineIndent = 5;
+    _model.privacyFontSize = 15;
+//    _model.privacyOffsetY = 100;
+//    _model.checkedImgSize = 16.0;
+    
     
 #pragma mark 自定义View（添加其它方式登录）
     [_model setAuthViewBlock:^(UIView * _Nonnull customView, CGRect logoFrame, CGRect numberFrame, CGRect sloganFrame, CGRect loginBtnFrame, CGRect privacyFrame ,CGRect swithAccFrame) {
