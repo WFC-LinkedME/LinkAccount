@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name                  = "LinkedME_LinkAccount"
-s.version              = '2.4.0'
+s.version              = '2.4.1'
 s.summary               = "LinkedME LinkAccount"
 s.description           = <<-DESC
 LinkedME LinkAccount for iOS.
@@ -18,7 +18,7 @@ limitations under the License.
 LICENSE
 }
 
-s.author                = { "Bindx" => "renyang@linkedme.cc"}
+s.author                = { "renyang" => "renyang@linkedme.cc"}
 s.source                = { :git => "https://github.com/WFC-LinkedME/LinkAccount.git", :tag => s.version }
 
 s.vendored_frameworks = '**/**/LinkAccount_Lib.framework'
