@@ -37,24 +37,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  预取号
- 初始化方法内部会自动执行一次预取号，一般情况下外部可无需调用
- 建议在即将执行一键登录的地方的前60s调用此方法，比如调一键登录的vc的viewdidload中，当初始化的预取号失败的情况下，此调用将有助于提高拉起授权页的速度和成功率
+ 建议在即将执行一键登录的地方之前调用此方法，比如调一键登录的vc的viewDidLoad中，此调用将有助于提高拉起授权页的速度和成功率
  不建议频繁的多次调用和在拉起授权页后调用
  @param timeout 超时时间 传值小于等于0则使用默认超时时间8秒
  @param complete 预取号结果
  */
 + (void)getMobileAuthWithTimeout:(NSTimeInterval)timeout complete:(void (^_Nullable)(NSDictionary * _Nonnull resultDic))complete;
 
-/** 
- 获取SDK预初始化完成情况（成功/失败），用户可以在将要调用一键登录方法处，通过此方法获取SDK预初始化情况，对于预初始化失败的，仍可以直接调一键登录接口，由用户自行决定
- @return status
- */
-
 /**
  获取本机号码校验Code
  调用此接口之前需要先调用getMobileAuthWithTimeout接口
  @param timeout 超时时间 传值小于等于0则使用默认超时时间8秒
- @param complete 回调，向服务端i传递accessCode + 本机号码服务端返回结果
+ @param complete 回调，向服务端传递accessCode + 需要验证的手机号， 服务端返回结果
  */
 - (void)getAccessCodeWithTimeout:(NSTimeInterval)timeout complete:(void (^_Nullable)(NSDictionary * _Nonnull resultDic))complete;
 
