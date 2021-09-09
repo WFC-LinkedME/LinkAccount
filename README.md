@@ -2,7 +2,11 @@
 
 
 
-当前最新版本：2.4.1
+当前最新版本：2.4.2
+
+* 更新联通SDK
+
+当前版本：2.4.1
 
 * 优化各运营商预取号返回的字段。
 
@@ -248,7 +252,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 **使用场景**
 
-建议在执行一键登录的方法前，提前一段时间调用此方法，比如调一键登录的vc的viewdidload中，或者rootVC的viewdidload中，或者app启动后，此调用将有助于提高拉起授权页的速度和成功率。
+建议在执行一键登录的方法前，提前一段时间调用此方法，比如调一键登录的vc的viewDidLoad中，或者rootVC的viewDidLoad中，或者app启动后，此调用将有助于提高拉起授权页的速度和成功率。
 不建议调用后立即调用拉起授权页方法（此方法是异步）
 此方法需要1~2s的时间取得临时凭证，因此也不建议和拉起授权页方法一起串行调用
 不建议频繁的多次调用和在拉起授权页后调用
@@ -458,6 +462,7 @@ class ViewController: UIViewController {
   "result":0,
   "gwAuth":"7473",
   "number":"189****0547",
+  "mobile":"189****0547",
   "expiredTime":3600,
   "operatorType":"CT",
   "msg":"success",
