@@ -136,7 +136,7 @@ LinkAccount SDK目前仅提供两种集成方式，手动集成，cocoaPods集�
 pod 'LinkedME_LinkAccount'
 
 #集成指定版本SDK:
-pod 'LinkedME_LinkAccount', '2.2.9'
+pod 'LinkedME_LinkAccount', '2.4.3'
 ```
 
 ##### 保存并执行pod install，然后用后缀为.xcworkspace的文件打开工程。
@@ -170,7 +170,11 @@ pod 'LinkedME_LinkAccount', '2.2.9'
 添加libc++.1.tbd: 在xcode->General->Linked Frameworks and Libraries中点击 **+** ，搜索并选择添加 **libc++.1.tbd**
 ![Build Phases](https://pagedoc.lkme.cc/.gitbook/assets/build-phases.png)
 
-2.4（SDK 2.3.1以后版本）如需支持iOS11及以下系统，需要添加依赖库，在项目设置target -> 选项卡Build Phase -> Linked Binary with Libraries添加如下依赖库: `Network.framework` 。
+2.4（SDK 2.4.3及以后版本）如需支持iOS11及以下系统，需要添加依赖库，在项目设置target -> 选项卡Build Phase -> Linked Binary with Libraries添加如下依赖库: `Network.framework` ，并将Status设置为 `Optional`。
+
+
+
+
 
 ### 二. SDK使用说明
 
