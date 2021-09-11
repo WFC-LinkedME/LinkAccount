@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67CA6E6E26EC4F6800D3EF51 /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D9AAB02664846C00E01062 /* Network.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		67D9AAA826647C6D00E01062 /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D9AAA726647C5800E01062 /* libc++.1.tbd */; };
-		67D9AAB32664864B00E01062 /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D9AAB02664846C00E01062 /* Network.framework */; };
 		841D6DE623B9BDA3006D92E7 /* LinkAccount.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 841D6DE423B9BDA3006D92E7 /* LinkAccount.bundle */; };
 		8477DC3822CB61510015ABB2 /* LinkedME_LinkAccount.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8477DC3722CB61510015ABB2 /* LinkedME_LinkAccount.podspec */; };
 		84B6249922AF99000032D244 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B6249822AF99000032D244 /* AppDelegate.m */; };
@@ -49,7 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67D9AAB32664864B00E01062 /* Network.framework in Frameworks */,
+				67CA6E6E26EC4F6800D3EF51 /* Network.framework in Frameworks */,
 				67D9AAA826647C6D00E01062 /* libc++.1.tbd in Frameworks */,
 				84B624D122AF99FF0032D244 /* libz.1.2.8.tbd in Frameworks */,
 				C44ECE972509D97E00776B25 /* LinkAccount_Lib.framework in Frameworks */,

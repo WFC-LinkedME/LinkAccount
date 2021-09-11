@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name                  = "LinkedME_LinkAccount"
-s.version              = '2.4.2'
+s.version              = '2.4.3'
 s.summary               = "LinkedME LinkAccount"
 s.description           = <<-DESC
 LinkedME LinkAccount for iOS.
@@ -25,7 +25,7 @@ s.vendored_frameworks = '**/**/LinkAccount_Lib.framework'
 s.resources = '**/**/LinkAccount.bundle'
 
 s.libraries = 'c++', 'z.1.2.8'
-
+s.weak_framework = 'Network'
 s.platform              = :ios
 s.ios.deployment_target = '9.0'
 s.requires_arc          = true
