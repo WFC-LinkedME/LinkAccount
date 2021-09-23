@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import <LinkAccount_Lib/LinkAccount.h>
 #import <LinkAccount_Lib/LMAuthSDKManager.h>
-
+#import "CustomerLoginViewController.h"
 
 @interface ViewController()
 
@@ -17,6 +17,7 @@
 @property (copy, nonatomic) NSMutableString *logStr;
 @property (copy,nonatomic) NSString *token;
 @property (strong, nonatomic) LMCustomModel *model;
+@property (nonatomic, copy) NSDictionary *preLoginDict;
 
 @end
 
@@ -31,12 +32,20 @@
     [self addLog:[NSString stringWithFormat:@"当前SDK版本: %@", [LMAuthSDKManager getVersion]]];
 }
 
-// 预取号,登陆前60s调用此方法
+// 预取号
 - (IBAction)getphoneNumber:(id)sender {
     __weak typeof(self) weakSelf = self;
     [self addLog:@"取号中...（请勿重复点击）"];
-    [LMAuthSDKManager getMobileAuthWithTimeout:10 complete:^(NSDictionary * _Nonnull resultDic) {
+    [LMAuthSDKManager getMobileAuthWithTimeout:0 complete:^(NSDictionary * _Nonnull resultDic) {
         [weakSelf addLog:[self convertToJsonData:resultDic]];
+        self.preLoginDict = resultDic;
+        
+        
+        // 这个判断仅供测试用, 实际开发中不要这么判断
+        if ([[resultDic valueForKey:@"resultCode"] integerValue] == 6666 && ![[resultDic valueForKey:@"des"] isKindOfClass:[NSString class]]) {
+            // TEST: 预取号成功后马上显示自定义登录页面
+            [self showCustomerLogin];
+        }
     }];
 }
 
@@ -251,6 +260,20 @@
     UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return theImage;
+}
+
+// 展示自定义登录页面
+- (void)showCustomerLogin {
+    if (self.preLoginDict) {
+        CustomerLoginViewController *vc = [CustomerLoginViewController new];
+        vc.modalPresentationStyle = UIModalPresentationFullScreen;
+        vc.preLoginDict = self.preLoginDict;
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        nav.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:nav animated:YES completion:nil];
+    } else {
+        NSLog(@"⚠️请先完成预取号操作");
+    }
 }
 
 @end

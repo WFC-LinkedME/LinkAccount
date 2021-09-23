@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67A63F3526FC0A95007F019E /* CustomerLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A63F3326FC0A95007F019E /* CustomerLoginViewController.m */; };
+		67A63F3626FC0A95007F019E /* CustomerLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67A63F3426FC0A95007F019E /* CustomerLoginViewController.xib */; };
 		67CA6EBE26EC5EB700D3EF51 /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D9AAB02664846C00E01062 /* Network.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		67D9AAA826647C6D00E01062 /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D9AAA726647C5800E01062 /* libc++.1.tbd */; };
 		841D6DE623B9BDA3006D92E7 /* LinkAccount.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 841D6DE423B9BDA3006D92E7 /* LinkAccount.bundle */; };
@@ -22,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		67A63F3226FC0A95007F019E /* CustomerLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerLoginViewController.h; sourceTree = "<group>"; };
+		67A63F3326FC0A95007F019E /* CustomerLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerLoginViewController.m; sourceTree = "<group>"; };
+		67A63F3426FC0A95007F019E /* CustomerLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomerLoginViewController.xib; sourceTree = "<group>"; };
 		67D9AAA726647C5800E01062 /* libc++.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.1.tbd"; path = "usr/lib/libc++.1.tbd"; sourceTree = SDKROOT; };
 		67D9AAAD266482C800E01062 /* libc.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libc.tbd; path = usr/lib/libc.tbd; sourceTree = SDKROOT; };
 		67D9AAB02664846C00E01062 /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = System/Library/Frameworks/Network.framework; sourceTree = SDKROOT; };
@@ -94,6 +99,9 @@
 				84B6249822AF99000032D244 /* AppDelegate.m */,
 				84B6249A22AF99000032D244 /* ViewController.h */,
 				84B6249B22AF99000032D244 /* ViewController.m */,
+				67A63F3226FC0A95007F019E /* CustomerLoginViewController.h */,
+				67A63F3326FC0A95007F019E /* CustomerLoginViewController.m */,
+				67A63F3426FC0A95007F019E /* CustomerLoginViewController.xib */,
 				84B6249D22AF99000032D244 /* Main.storyboard */,
 				84B624A022AF99020032D244 /* Assets.xcassets */,
 				84B624A222AF99020032D244 /* LaunchScreen.storyboard */,
@@ -178,6 +186,7 @@
 				84B624A122AF99020032D244 /* Assets.xcassets in Resources */,
 				84B6249F22AF99000032D244 /* Main.storyboard in Resources */,
 				8477DC3822CB61510015ABB2 /* LinkedME_LinkAccount.podspec in Resources */,
+				67A63F3626FC0A95007F019E /* CustomerLoginViewController.xib in Resources */,
 				841D6DE623B9BDA3006D92E7 /* LinkAccount.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,6 +200,7 @@
 			files = (
 				84B6249C22AF99000032D244 /* ViewController.m in Sources */,
 				84B624A722AF99020032D244 /* main.m in Sources */,
+				67A63F3526FC0A95007F019E /* CustomerLoginViewController.m in Sources */,
 				84B6249922AF99000032D244 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

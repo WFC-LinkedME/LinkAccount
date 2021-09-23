@@ -23,3 +23,5 @@ static SDKStatusCode const _Nullable SDKStatusCodeNoNetwork       = @"2222";
 static SDKStatusCode const _Nullable SDKStatusCodeOtherErr        = @"2233";
 //蜂窝数据未开启或不稳定
 static SDKStatusCode const _Nullable SDKStatusCodeParam_Err       = @"3344";
+//服务被禁用
+static SDKStatusCode const _Nullable SDKStatusCodeDisableService  = @"1122";
