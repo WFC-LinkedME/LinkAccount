@@ -265,12 +265,17 @@
 // 展示自定义登录页面
 - (IBAction)showCustomerLogin:(UIButton *)sender {
     if (self.preLoginDict) {
-        CustomerLoginViewController *vc = [CustomerLoginViewController new];
-        vc.modalPresentationStyle = UIModalPresentationFullScreen;
-        vc.preLoginDict = self.preLoginDict;
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-        nav.modalPresentationStyle = UIModalPresentationFullScreen;
-        [self presentViewController:nav animated:YES completion:nil];
+        
+        if ([[self.preLoginDict valueForKey:@"resultCode"] integerValue] == 6666) {
+            CustomerLoginViewController *vc = [CustomerLoginViewController new];
+            vc.modalPresentationStyle = UIModalPresentationFullScreen;
+            vc.preLoginDict = self.preLoginDict;
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+            nav.modalPresentationStyle = UIModalPresentationFullScreen;
+            [self presentViewController:nav animated:YES completion:nil];
+        } else {
+            [self addLog:[self convertToJsonData:self.preLoginDict]];
+        }
     } else {
         [self addLog:@"请先完成预取号!"];
     }
