@@ -42,9 +42,9 @@
         
         
         // 这个判断仅供测试用, 实际开发中不要这么判断
-        if ([[resultDic valueForKey:@"resultCode"] integerValue] == 6666 && ![[resultDic valueForKey:@"des"] isKindOfClass:[NSString class]]) {
+        if ([[resultDic valueForKey:@"resultCode"] integerValue] == 6666 && ![[resultDic valueForKey:@"desc"] isKindOfClass:[NSString class]]) {
             // TEST: 预取号成功后马上显示自定义登录页面
-            [self showCustomerLogin];
+            [self showCustomerLogin:nil];
         }
     }];
 }
@@ -263,7 +263,7 @@
 }
 
 // 展示自定义登录页面
-- (void)showCustomerLogin {
+- (IBAction)showCustomerLogin:(UIButton *)sender {
     if (self.preLoginDict) {
         CustomerLoginViewController *vc = [CustomerLoginViewController new];
         vc.modalPresentationStyle = UIModalPresentationFullScreen;
@@ -272,7 +272,7 @@
         nav.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:nav animated:YES completion:nil];
     } else {
-        NSLog(@"⚠️请先完成预取号操作");
+        [self addLog:@"请先完成预取号!"];
     }
 }
 

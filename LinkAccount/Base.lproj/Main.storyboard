@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -86,7 +86,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pYJ-NN-aYO">
-                                <rect key="frame" x="20" y="231" width="374" height="616"/>
+                                <rect key="frame" x="20" y="274" width="374" height="573"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -97,22 +97,42 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sk-Xs-dsB">
+                                <rect key="frame" x="20" y="231" width="374" height="28"/>
+                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="弹出自定义登录页面">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="showCustomerLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Vy-2B-B0c"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Wls-gO-ual"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
                             <constraint firstItem="Wls-gO-ual" firstAttribute="trailing" secondItem="pYJ-NN-aYO" secondAttribute="trailing" constant="20" id="05H-I2-Fzm"/>
                             <constraint firstItem="HeV-rn-J2V" firstAttribute="top" secondItem="fti-v4-ZFM" secondAttribute="bottom" constant="15" id="0vk-BH-7Xz"/>
+                            <constraint firstItem="1sk-Xs-dsB" firstAttribute="leading" secondItem="8iP-Tg-yXb" secondAttribute="leading" id="9KI-Jz-Yds"/>
                             <constraint firstItem="8iP-Tg-yXb" firstAttribute="top" secondItem="HeV-rn-J2V" secondAttribute="bottom" constant="15" id="Bph-AB-o7x"/>
                             <constraint firstItem="HeV-rn-J2V" firstAttribute="leading" secondItem="Wls-gO-ual" secondAttribute="leading" constant="20" id="DzZ-lQ-iyh"/>
                             <constraint firstItem="Wls-gO-ual" firstAttribute="trailing" secondItem="Bs4-JZ-l8q" secondAttribute="trailing" constant="20" id="F3y-AR-U53"/>
+                            <constraint firstItem="1sk-Xs-dsB" firstAttribute="top" secondItem="8iP-Tg-yXb" secondAttribute="bottom" constant="15" id="Kjh-sk-kUs"/>
+                            <constraint firstItem="pYJ-NN-aYO" firstAttribute="top" secondItem="1sk-Xs-dsB" secondAttribute="bottom" constant="15" id="NAN-jG-YLN"/>
                             <constraint firstItem="Wls-gO-ual" firstAttribute="bottom" secondItem="pYJ-NN-aYO" secondAttribute="bottom" constant="15" id="O2b-2w-BZA"/>
                             <constraint firstItem="Wls-gO-ual" firstAttribute="trailing" secondItem="fti-v4-ZFM" secondAttribute="trailing" constant="20" id="Oam-FS-y3i"/>
                             <constraint firstItem="Wls-gO-ual" firstAttribute="trailing" secondItem="8iP-Tg-yXb" secondAttribute="trailing" constant="20" id="Or4-V0-Eqb"/>
                             <constraint firstItem="pYJ-NN-aYO" firstAttribute="leading" secondItem="Wls-gO-ual" secondAttribute="leading" constant="20" id="QcO-e2-kGp"/>
                             <constraint firstItem="Bs4-JZ-l8q" firstAttribute="top" secondItem="Wls-gO-ual" secondAttribute="top" constant="15" id="Qd4-92-qhd"/>
                             <constraint firstItem="Bs4-JZ-l8q" firstAttribute="leading" secondItem="Wls-gO-ual" secondAttribute="leading" constant="20" id="as6-T9-gql"/>
-                            <constraint firstItem="pYJ-NN-aYO" firstAttribute="top" secondItem="8iP-Tg-yXb" secondAttribute="bottom" constant="15" id="fKw-BC-0ZU"/>
+                            <constraint firstItem="1sk-Xs-dsB" firstAttribute="trailing" secondItem="8iP-Tg-yXb" secondAttribute="trailing" id="mrl-1J-B9a"/>
                             <constraint firstItem="Wls-gO-ual" firstAttribute="trailing" secondItem="HeV-rn-J2V" secondAttribute="trailing" constant="20" id="n6v-wB-t5h"/>
                             <constraint firstItem="fti-v4-ZFM" firstAttribute="top" secondItem="Bs4-JZ-l8q" secondAttribute="bottom" constant="15" id="nyc-c3-P5b"/>
                             <constraint firstItem="fti-v4-ZFM" firstAttribute="leading" secondItem="Wls-gO-ual" secondAttribute="leading" constant="20" id="omK-vJ-a5i"/>
