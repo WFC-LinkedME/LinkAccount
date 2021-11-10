@@ -44,7 +44,7 @@
         // 这个判断仅供测试用, 实际开发中不要这么判断
         if ([[resultDic valueForKey:@"resultCode"] integerValue] == 6666 && ![[resultDic valueForKey:@"desc"] isKindOfClass:[NSString class]]) {
             // TEST: 预取号成功后马上显示自定义登录页面
-            [self showCustomerLogin:nil];
+//            [self showCustomerLogin:nil];
         }
     }];
 }
@@ -267,12 +267,17 @@
     if (self.preLoginDict) {
         
         if ([[self.preLoginDict valueForKey:@"resultCode"] integerValue] == 6666) {
-            CustomerLoginViewController *vc = [CustomerLoginViewController new];
-            vc.modalPresentationStyle = UIModalPresentationFullScreen;
-            vc.preLoginDict = self.preLoginDict;
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-            nav.modalPresentationStyle = UIModalPresentationFullScreen;
-            [self presentViewController:nav animated:YES completion:nil];
+            
+            if (![self.preLoginDict[@"desc"] isKindOfClass:[NSString class]]) {
+                CustomerLoginViewController *vc = [CustomerLoginViewController new];
+                vc.modalPresentationStyle = UIModalPresentationFullScreen;
+                vc.preLoginDict = self.preLoginDict;
+                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                nav.modalPresentationStyle = UIModalPresentationFullScreen;
+                [self presentViewController:nav animated:YES completion:nil];
+            } else {
+                [self addLog:@"未开通自定义界面权限, 请联系管理员!"];
+            }
         } else {
             [self addLog:[self convertToJsonData:self.preLoginDict]];
         }
