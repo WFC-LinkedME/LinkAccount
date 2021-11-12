@@ -94,23 +94,28 @@
     //    _model.noChecked = YES;
     //默认勾选用户隐私协议
     _model.privacyState = YES;
-    //自定义隐私条款1
-    _model.appPrivacyOne   = @[@"《某某用户服务协议》", @"https://github.com/WFC-LinkedME/LinkAccount"];
-    //自定义隐私条款2
-    _model.appPrivacyTwo   = @[@"《某某金融隐私协议》", @"https://www.baidu.com"];
+    //自定义隐私条款
+    _model.privacyNames = @[@"《某某用户服务协议》", @"《某某金融隐私协议》"];
+    _model.privacyUrls = @[@"https://github.com/WFC-LinkedME/LinkAccount", @"https://www.sina.com.cn"];
     //隐私协议颜色, @[默认文字颜色, 协议颜色]
     _model.appPrivacyColor = @[[UIColor blackColor], [UIColor purpleColor]];
     //隐私条款复选框非选中状态
     _model.uncheckedImg = [UIImage imageNamed:@"未选中"];
     //隐私条款复选框选中状态
     _model.checkedImg   = [UIImage imageNamed:@"选中"];
+    _model.privacyTextAlignment = NSTextAlignmentCenter;
+    _model.privacyHeadIndent = 18;
+    _model.privacyLineSpacing = 5;
+    
     _model.checkedImgOriginY = 1.5;
     _model.checkedImgOriginX = 0;
     _model.privacyLineSpacing = 3;
     _model.privacyFirstLineIndent = 5;
-    _model.privacyFontSize = 15;
+    _model.privacyFontSize = 13;
 //    _model.privacyOffsetY = 100;
 //    _model.checkedImgSize = 16.0;
+    
+    _model.showQuotes = YES; // 显示书名号
     
     
 #pragma mark 自定义View（添加其它方式登录）

@@ -130,55 +130,59 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat checkedImgOriginX;
 /// 6.复选框Y坐标偏移量
 @property (nonatomic, assign) CGFloat checkedImgOriginY;
-/// 7.用户自定义协议1(@[@"xxx协议1",@"https://www.abc.com"])
-@property (nonatomic, copy) NSArray *appPrivacyOne;
-/// 8.用户自定义协议2(@[@"xxx协议2",@"https://www.def.com"])
-@property (nonatomic, copy) NSArray *appPrivacyTwo;
+/// 7,自定义隐私条款名称数组 例: @[@"xx协议", @"xx政策"],  名称和地址数组长度务必相同, 名称数组中不能有重名
+@property (nonatomic, copy) NSArray<NSString *> *privacyNames;
+/// 8.自定义隐私条款地址数组 例: @[@"https://www.aaa.com", @"https://wwww.bbb.com"]
+@property (nonatomic, copy) NSArray<NSString *> *privacyUrls;
 /// 9.复选框默认勾选状态
 @property (nonatomic, assign) BOOL privacyState;
 /// 10.隐私协议首行文字距离复选框右边的距离(根据实际情况微调, +-值均可)
 @property (nonatomic, assign) CGFloat privacyFirstLineIndent;
-/// 11.隐私协议文字行间距(默认为0)
+/// 11.隐私协议文字头部缩进(设置适当的值可实现文字与复选框的右侧对齐的效果)
+@property (nonatomic, assign) CGFloat privacyHeadIndent;
+/// 12.隐私协议文字行间距(默认为0)
 @property (nonatomic, assign) CGFloat privacyLineSpacing;
-/// 12.隐私协议换行模式
+/// 13.隐私协议换行模式
 @property (nonatomic, assign) NSLineBreakMode privacyLineBreakMode;
-/// 13.隐私协议详情页标题颜色
+/// 14.隐私协议详情页标题颜色
 @property (nonatomic, strong) UIColor *privacyTitleColor;
-/// 14.隐私条款Y偏移量(注:此属性为与屏幕底部的距离)
+/// 15.隐私条款Y偏移量(注:此属性为与屏幕底部的距离)
 @property (nonatomic, assign) CGFloat privacyOffsetY;
-/// 15.隐私协议颜色，@[默认文字颜色，协议名称颜色]
+/// 16.隐私协议颜色，@[默认文字颜色，协议名称颜色]
 @property (nonatomic, strong) NSArray *appPrivacyColor;
-/// 16.隐私协议对齐状态(建议左对齐, 默认为左对齐)
+/// 17.隐私协议对齐状态(建议左对齐, 默认为左对齐)
 @property (nonatomic, assign) NSTextAlignment privacyTextAlignment;
-/// 17.隐私协距离屏幕边框位置
+/// 18.隐私协距离屏幕边框位置
 @property (nonatomic, assign) CGFloat privacyMargin;
-/// 18.隐私协议高度
+/// 19.隐私协议高度
 @property (nonatomic, assign) CGFloat privacyHeight;
-/// 19.隐私协议字体大小 默认为14
+/// 20.隐私协议字体大小 默认为13
 @property (nonatomic, assign) CGFloat privacyFontSize;
-/// 20.自定义隐私协议的点击方法(设置后需在block内自行处理跳转逻辑)
+/// 21.自定义隐私协议的点击方法(设置后需在block内自行处理跳转逻辑)
 @property (nonatomic, copy) void(^privateClickInfo)(NSString *privacyTitle, NSURL *url);
+/// 22.运营商默认的隐私协议是否显示书名号
+@property (nonatomic, assign) BOOL showQuotes;
 
 /*
 🙂隐私协议是否同意请使用 [LMAuthSDKManager sharedSDKManager].isPrivacyChecked 获取其状态, 然后自行处理
  
-/// 18.用户未同意隐私协议提示
+/// 用户未同意隐私协议提示
 @property (nonatomic, copy) NSString *appPrivacyWarningStr;
-/// 19.用户未同意隐私协议提示Y偏移量(注:此属性为与屏幕顶部的距离)
+/// 用户未同意隐私协议提示Y偏移量(注:此属性为与屏幕顶部的距离)
 @property (nonatomic, assign) CGFloat appPrivacyWarningStrOffsetY;
-/// 20.提示框距离边距文字距离
+/// 提示框距离边距文字距离
 @property (nonatomic, assign) CGFloat margin;
-/// 21.未勾选隐私协议提示框 圆角
+/// 未勾选隐私协议提示框 圆角
 @property (nonatomic, assign) CGFloat cornerRadius;
-/// 22.未勾选隐私协议提示框 透明度
+/// 未勾选隐私协议提示框 透明度
 @property (nonatomic, assign) CGFloat appPrivacyAlpah;
-/// 23.未勾选隐私协议提示框 字体颜色
+/// 未勾选隐私协议提示框 字体颜色
 @property (nonatomic, strong) UIColor *appPrivacyTextColor;
-/// 24.未勾选隐私协议提示框 字体大小
+/// 未勾选隐私协议提示框 字体大小
 @property (nonatomic, assign) CGFloat appPrivacyFontSize;
-/// 25.未勾选隐私协议提示框 背景颜色
+/// 未勾选隐私协议提示框 背景颜色
 @property (nonatomic, assign) UIColor *appPrivacyBackgroundColor;
-/// 26.未勾选隐私协议提示框 等待时间
+/// 未勾选隐私协议提示框 等待时间
 @property (nonatomic, assign) CGFloat appPrivacyWaitTime;
 */
  
