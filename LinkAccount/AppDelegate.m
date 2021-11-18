@@ -22,6 +22,14 @@
     //初始化
     [LMAuthSDKManager initWithKey:@"7e289a2484f4368dbafbd1e5c7d06903" complete:^(NSDictionary * _Nonnull resultDic) {
         NSLog(@"%@", resultDic);
+        
+        // 初始化成功后立即预取号测试
+//        if ([resultDic[@"resultCode"] integerValue] == 6666) {
+//            [LMAuthSDKManager getMobileAuthWithTimeout:0 complete:^(NSDictionary * _Nonnull resultDic) {
+//                NSLog(@"%@", resultDic);
+//            }];
+//        }
+        
     }];
     
     NSLog(@"🔥SDK Version : %@", [LMAuthSDKManager getVersion]);
