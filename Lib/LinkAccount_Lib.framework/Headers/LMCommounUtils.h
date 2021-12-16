@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  获取设备当前网络私网IP地址
  */
-+ (NSDictionary *)getIPAddresses;
++ (nullable NSDictionary *)getIPAddresses;
 + (BOOL)isValidatIP:(NSString *)ipAddress;
 + (NSString *)getIPAddress:(BOOL)preferIPv4;
 
