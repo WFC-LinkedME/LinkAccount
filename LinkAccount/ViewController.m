@@ -32,6 +32,10 @@
     [self addLog:[NSString stringWithFormat:@"当前SDK版本: %@", [LMAuthSDKManager getVersion]]];
 }
 
+- (void)test {
+//    [[UASDKLogin shareLogin] ua_dismissViewControllerAnimated:NO completion:nil];
+}
+
 // 预取号
 - (IBAction)getphoneNumber:(id)sender {
     __weak typeof(self) weakSelf = self;
