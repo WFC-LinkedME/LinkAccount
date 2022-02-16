@@ -80,6 +80,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign, getter=isPrivacyChecked) BOOL privacyChecked;
 
+
+/**
+ 如果使用SDK出现如下错误:
+ [此服务器的证书无效。您可能正在连接到一个伪装成“xxx.xxx.xxx.xxx”的服务器，这会威胁到您的机密信息的安全]
+ 可以将此属性设置为 YES
+ */
+@property (nonatomic, assign) BOOL accessByDomain;
+
 #pragma mark - ⚠️用户请不要使用以下属性⚠️
 
 @property (nonatomic, assign, readonly) NSTimeInterval accessTokenTimeout;
