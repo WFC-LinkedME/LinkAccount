@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "LMCustomModel.h"
-#import "UASDKLogin.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
