@@ -29,6 +29,7 @@ s.weak_framework = 'Network'
 s.platform              = :ios
 s.ios.deployment_target = '9.0'
 s.requires_arc          = true
+s.static_framework      = true
 
 s.pod_target_xcconfig = {
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
