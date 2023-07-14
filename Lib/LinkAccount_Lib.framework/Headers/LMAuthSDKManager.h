@@ -87,6 +87,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) BOOL accessByDomain;
 
+/**
+ 控制台打印日志
+ 默认关闭
+ */
+@property (nonatomic, assign) BOOL printConsoleEnable;
+
 #pragma mark - ⚠️用户请不要使用以下属性⚠️
 
 @property (nonatomic, assign, readonly) NSTimeInterval accessTokenTimeout;
