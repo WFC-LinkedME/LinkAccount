@@ -156,9 +156,9 @@
         }
         [weakSelf addLog:[weakSelf convertToJsonData:resultDic]];
         
-    } clickLoginBtn:^(UIViewController * _Nonnull loginVc) {
+    } clickLoginBtn:^(UIViewController * _Nonnull loginVc, BOOL isPrivacyChecked) {
         NSLog(@"%@",@"用户点击了登录按钮");
-        BOOL isPrivacyChecked = [LMAuthSDKManager sharedSDKManager].isPrivacyChecked;
+//        BOOL isPrivacyChecked = [LMAuthSDKManager sharedSDKManager].isPrivacyChecked;
         if (!isPrivacyChecked) {
             [weakSelf showAlertOnVc:loginVc title:@"请先同意协议"];
         }

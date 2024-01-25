@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param timeout 超时时间 传值小于等于0则使用默认超时时间8秒
  @param complete 字典形式
  */
-- (void)getLoginTokenWithController:(UIViewController *_Nonnull)vc model:(LMCustomModel *_Nullable)model timeout:(NSTimeInterval )timeout complete:(void (^_Nullable)(NSDictionary * _Nonnull resultDic))complete clickLoginBtn:(void(^)(UIViewController *loginVc))clickLogin otherLogin:(void(^)(UIViewController *loginVc))otherBlock;
+- (void)getLoginTokenWithController:(UIViewController *_Nonnull)vc model:(LMCustomModel *_Nullable)model timeout:(NSTimeInterval )timeout complete:(void (^_Nullable)(NSDictionary * _Nonnull resultDic))complete clickLoginBtn:(void(^)(UIViewController *loginVc, BOOL isPrivacyChecked))clickLogin otherLogin:(void(^)(UIViewController *loginVc))otherBlock;
 
 /**
  无界面取号 (## 中国移动10分钟内获取token且未使用的数量不能超过30个 ##)
